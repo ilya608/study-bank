@@ -12,7 +12,7 @@ from utils.feature_transformer_for_ml import FeatureTransformerForMl
 
 app = FastAPI()
 
-DB_URL = "postgresql://postgres:abc@localhost:5432/points"
+DB_URL = "postgresql://postgres:abc@db:5432/points"
 engine = create_engine(DB_URL)
 points_dao = PointsDao(engine)
 
