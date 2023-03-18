@@ -1,9 +1,6 @@
-from typing import List
+import pandas as pd
 
 from features_collector.output.feature_collector_bank_output import FeatureCollectorBankOutput
-from ml.input.bank_input_for_ml import BankInputForML
-
-import pandas as pd
 
 renaming_rules = {'distance_to_bank_sberbank': 'distance_to_bank_Сбербанк',
                   'distance_to_bank_vtb': 'distance_to_bank_ВТБ',
@@ -29,10 +26,8 @@ class FeatureTransformerForMl:
         self.todo = 123
 
     @staticmethod
-    def transform(bank_with_features: FeatureCollectorBankOutput) -> pd.DataFrame:
-        bank_input_for_ml = BankInputForML(atm_group=123)  # todo переложить тут bank_with_features сюда
-
-        json = vars(bank_input_for_ml)
+    def transform(bank: FeatureCollectorBankOutput) -> pd.DataFrame:
+        json = vars(bank)
         json = rename_russian_features(json)
         series = pd.Series(json)
         return series.to_frame().T

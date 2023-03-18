@@ -3,6 +3,7 @@ uvicorn[standard]
 psycopg2~=2.9.5
 pydantic~=1.10.6
 scikit-learn==1.0.2
+pandas==1.5.3
 sklearn
-pandas
 dataclasses-json==0.5.4
+alembic
