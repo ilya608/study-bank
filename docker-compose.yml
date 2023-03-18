@@ -1,9 +1,21 @@
 version: '3'
 
 services:
-  app:
-    build: .
-    command: uvicorn app:app --host 0.0.0.0 --port 8000
-    restart: always
+#   app:
+#     build: .
+#     command: uvicorn app:app --host 0.0.0.0 --port 8000
+#     restart: always
+#     ports:
+#       - "8000:8000"
+#     depends_on:
+#       - db
+#     environment:
+#       DATABASE_URL: postgresql://postgres:123@db:abc/points
+  db:
+    image: postgres
     ports:
-      - "8000:8000"
+        - "5432:5432"
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: abc
+      POSTGRES_DB: points
