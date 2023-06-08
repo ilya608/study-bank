@@ -7,8 +7,6 @@ services:
     restart: always
     ports:
       - "8000:8000"
-    depends_on:
-      - db
     environment:
       DATABASE_URL: postgresql://postgres:abc@db:5432/points
 # база будет удаленная
