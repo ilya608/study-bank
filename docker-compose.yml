@@ -11,11 +11,25 @@ services:
       - db
     environment:
       DATABASE_URL: postgresql://postgres:abc@db:5432/points
-  db:
-    image: postgres
+# база будет удаленная
+#   db:
+#     image: postgres
+#     ports:
+#         - "5432:5432"
+#     environment:
+#       POSTGRES_USER: postgres
+#       POSTGRES_PASSWORD: abc
+#       POSTGRES_DB: points
+
+  prometheus:
+    image: prom/prometheus
     ports:
-        - "5432:5432"
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: abc
-      POSTGRES_DB: points
+      - "9090:9090"
+    volumes:
+      - ${PWD}/prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    hostname: grafana
+    image: grafana/grafana
+    ports:
+      - 3000:3000

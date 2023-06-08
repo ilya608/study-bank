@@ -2,6 +2,8 @@ import pickle
 
 import uvicorn
 from fastapi import FastAPI
+from prometheus_client import Summary, Counter
+from prometheus_fastapi_instrumentator import Instrumentator
 from sqlalchemy import create_engine
 
 from features_collector.feature_collector_manager import FeatureCollectorManager
@@ -10,7 +12,12 @@ from features_collector.postgres.points_dao import PointsDao
 from ml.predictor import Predictor
 from utils.feature_transformer_for_ml import FeatureTransformerForMl
 
+REQUEST_TIME = Summary('request_processing_seconds', 'Time spent processing request')
+UPDATE_COUNT = Counter('update_count', 'Number of updates')
+
 app = FastAPI()
+
+Instrumentator().instrument(app).expose(app)
 
 DB_URL = "postgresql://postgres:abc@db:5432/points"
 engine = create_engine(DB_URL)
@@ -22,8 +29,10 @@ feature_collector_manager = FeatureCollectorManager(points_dao)
 predictor = Predictor(model)
 
 
+@REQUEST_TIME.time()
 @app.get("/predict-bank-quality")
 def predict(lat: float, long: float):
+    UPDATE_COUNT.inc(20)
     feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long)
     feature_collector_bank_output = feature_collector_manager.collect_features(feature_collector_bank_input)
 
