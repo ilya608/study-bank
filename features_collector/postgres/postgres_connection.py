@@ -1,6 +1,7 @@
 import psycopg2
 
-if __name__ == '__main__':
+
+def get_pg_connection():
     conn = psycopg2.connect("""
         host=rc1a-mxoodqvw58cvt97d.mdb.yandexcloud.net,rc1b-4ny0b4t0wrstwjaj.mdb.yandexcloud.net
         port=6432
@@ -11,7 +12,7 @@ if __name__ == '__main__':
         target_session_attrs=read-write
     """)
 
-    q = conn.cursor()
+    return conn
 
     q.execute("SELECT application_name, client_addr, state FROM pg_stat_replication;")
     replicas = q.fetchall()

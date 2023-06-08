@@ -9,6 +9,7 @@ from sqlalchemy import create_engine
 from features_collector.feature_collector_manager import FeatureCollectorManager
 from features_collector.input.feature_collector_bank_input import FeatureCollectorBankInput
 from features_collector.postgres.points_dao import PointsDao
+from features_collector.postgres.postgres_connection import get_pg_connection
 from ml.predictor import Predictor
 from utils.feature_transformer_for_ml import FeatureTransformerForMl
 
@@ -19,9 +20,8 @@ app = FastAPI()
 
 Instrumentator().instrument(app).expose(app)
 
-DB_URL = "postgresql://postgres:abc@db:5432/points"
-engine = create_engine(DB_URL)
-points_dao = PointsDao(engine)
+pg_connection = get_pg_connection()
+points_dao = PointsDao(pg_connection)
 
 with open("ml/models/atm_best.pkl", "rb") as f:
     model = pickle.load(f)

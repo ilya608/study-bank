@@ -5,43 +5,76 @@ from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 
 from common.point import Point
-
-Base = declarative_base()
+from features_collector.postgres.postgres_connection import get_pg_connection
 
 
 class PostgresPointsTableInitializer:
-    def __init__(self, csv_file_path, db_url):
-        self.csv_file_path = csv_file_path
-        self.db_url = db_url
+    def __init__(self, connection):
+        self.connection = connection
+
+    def clear_table(self):
+        cursor = self.connection.cursor()
+
+        cursor.execute("drop table points")
+        self.connection.commit()
+        cursor.close()
 
     def create_table(self):
-        engine = create_engine(self.db_url)
-        Base.metadata.create_all(engine)
+        cursor = self.connection.cursor()
+
+        cursor.execute("SELECT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'points')")
+        table_exists = cursor.fetchone()[0]
+
+        if not table_exists:
+            # Создание таблицы points
+            create_table_query = """
+                CREATE TABLE points (
+                    latitude float8,
+                    longitude float8,
+                    building_type varchar   
+                )
+                """
+            cursor.execute(create_table_query)
+
+            self.connection.commit()
+            print("Таблица points создана")
+        else:
+            print("Таблица points уже существует")
+            self.clear_table()
+        self.fill_table()
+
+        cursor.close()
+        return 0
 
     def fill_table(self):
-        # Открываем CSV файл и читаем данные
-        with open(self.csv_file_path, "r") as csvfile:
-            reader = csv.reader(csvfile)
-            next(reader)  # пропускаем заголовок
-            data = [(float(row[0]), float(row[1]), row[2]) for row in reader]
+        with open('points.csv', 'r') as file:
+            # Создание объекта DictReader для чтения CSV-файла
+            reader = csv.DictReader(file)
 
-        # Создаем сессию для работы с базой данных
-        engine = create_engine(self.db_url)
-        Session = sessionmaker(bind=engine)
-        session = Session()
+            # Создание курсора
+            cursor = self.connection.cursor()
 
-        session.query(Point).delete()
+            # Вставка данных из CSV-файла в таблицу points
+            for row in reader:
+                latitude = row['latitude']
+                longitude = row['longitude']
+                building_type = row['building_type']
 
-        # Заполняем таблицу данными из CSV файла
-        for id, (latitude, longitude, building_type) in enumerate(data):
-            point = Point(id=id, latitude=latitude, longitude=longitude, building_type=building_type)
-            session.add(point)
+                # Выполнение SQL-запроса для вставки данных
+                cursor.execute("INSERT INTO points (latitude, longitude, building_type) VALUES (%s, %s, %s)",
+                               (latitude, longitude, building_type))
 
-        session.commit()
+            # Фиксация изменений
+            self.connection.commit()
+
+            # Закрытие курсора
+            cursor.close()
+
+        print("Данные из файла points.csv успешно загружены в таблицу points")
 
 
 if __name__ == "__main__":
-    initializer = PostgresPointsTableInitializer(csv_file_path="points.csv",
-                                                 db_url="postgresql://postgres:abc@localhost:5432/points")
+    pg_connection = get_pg_connection()
+    initializer = PostgresPointsTableInitializer(pg_connection)
+
     initializer.create_table()
-    initializer.fill_table()
