@@ -1,15 +1,20 @@
 from logging import getLogger
 
+from prometheus_client import Summary
+
 from features_collector.input.feature_collector_bank_input import FeatureCollectorBankInput
 from features_collector.output.feature_collector_bank_output import FeatureCollectorBankOutput
 
 from features_collector.postgres.points_dao import PointsDao
+
+REQUEST_TIME = Summary('collect_features_response_time', 'Time spent processing request')
 
 
 class FeatureCollectorManager:
     def __init__(self, points_dao: PointsDao):
         self.points_dao = points_dao
 
+    @REQUEST_TIME.time()
     def collect_features(self, feature_collector_bank_input: FeatureCollectorBankInput) -> FeatureCollectorBankOutput:
         lat = feature_collector_bank_input.latitude
         long = feature_collector_bank_input.longitude
@@ -21,7 +26,6 @@ class FeatureCollectorManager:
 
         return feature_collector_bank_output
 
-
     def parse_points(self, nearest_by_type, feature_collector_bank_output: FeatureCollectorBankOutput):
         for point in nearest_by_type:
             type = point['building_type']
@@ -31,4 +35,5 @@ class FeatureCollectorManager:
             if hasattr(feature_collector_bank_output, feature_name):
                 setattr(feature_collector_bank_output, feature_name, distance)
             else:
-                raise Exception("fixme") # todo сделать тут логирование вместо exception. это ок, если пришла незнакомая фича
+                raise Exception(
+                    "fixme")  # todo сделать тут логирование вместо exception. это ок, если пришла незнакомая фича

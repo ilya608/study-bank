@@ -1,4 +1,5 @@
 import pandas as pd
+from prometheus_client import Summary
 
 from features_collector.output.feature_collector_bank_output import FeatureCollectorBankOutput
 
@@ -11,6 +12,8 @@ renaming_rules = {'distance_to_bank_sberbank': 'distance_to_bank_Сбербан�
                   'distance_to_atm_alfa_bank': 'distance_to_atm_Альфа-Банк',
                   'distance_to_atm_rosbank': 'distance_to_atm_Росбанк'
                   }
+
+REQUEST_TIME = Summary('ml_model_response_time', 'Time spent processing request')
 
 
 def rename_russian_features(bank):
@@ -25,6 +28,7 @@ class FeatureTransformerForMl:
     def __init__(self):
         self.todo = 123
 
+    @REQUEST_TIME.time()
     @staticmethod
     def transform(bank: FeatureCollectorBankOutput) -> pd.DataFrame:
         json = vars(bank)
