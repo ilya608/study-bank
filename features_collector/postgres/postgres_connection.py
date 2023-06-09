@@ -10,7 +10,7 @@ def get_pg_connection():
         user=hse-ilya
         password=12345678
         target_session_attrs=read-write
-        sslrootcert=../../.postgresql/root.crt
+        sslrootcert=.postgresql/root.crt
     """)
 
     return conn
