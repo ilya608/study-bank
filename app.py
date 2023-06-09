@@ -28,6 +28,9 @@ with open("ml/models/atm_best.pkl", "rb") as f:
 feature_collector_manager = FeatureCollectorManager(points_dao)
 predictor = Predictor(model)
 
+@app.get("/hello")
+def hello():
+    return 'hello world!'
 
 @REQUEST_TIME.time()
 @app.get("/predict-bank-quality")
