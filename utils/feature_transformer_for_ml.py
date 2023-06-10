@@ -28,7 +28,6 @@ class FeatureTransformerForMl:
     def __init__(self):
         self.todo = 123
 
-    @REQUEST_TIME.time()
     @staticmethod
     def transform(bank: FeatureCollectorBankOutput) -> pd.DataFrame:
         json = vars(bank)
