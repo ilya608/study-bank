@@ -29,7 +29,7 @@ class FeatureTransformerForMl:
         self.todo = 123
 
     @REQUEST_TIME.time()
-    def transform(bank: FeatureCollectorBankOutput) -> pd.DataFrame:
+    def transform(self, bank: FeatureCollectorBankOutput) -> pd.DataFrame:
         json = vars(bank)
         json = rename_russian_features(json)
         series = pd.Series(json)
