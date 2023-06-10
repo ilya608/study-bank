@@ -28,6 +28,8 @@ with open("ml/models/atm_best.pkl", "rb") as f:
 feature_collector_manager = FeatureCollectorManager(points_dao)
 predictor = Predictor(model)
 
+feature_transformer_for_ml = FeatureTransformerForMl()
+
 
 @REQUEST_TIME.time()
 @app.get("/predict-bank-quality")
@@ -36,7 +38,7 @@ def predict(lat: float, long: float):
     feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long)
     feature_collector_bank_output = feature_collector_manager.collect_features(feature_collector_bank_input)
 
-    bank_row_dataframe = FeatureTransformerForMl.transform(feature_collector_bank_output)
+    bank_row_dataframe = feature_transformer_for_ml.transform(feature_collector_bank_output)
     quality = predictor.predict(bank_row_dataframe)
 
     return {"quality": quality[0]}

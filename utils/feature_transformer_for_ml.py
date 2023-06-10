@@ -28,7 +28,7 @@ class FeatureTransformerForMl:
     def __init__(self):
         self.todo = 123
 
-    @staticmethod
+    @REQUEST_TIME.time()
     def transform(bank: FeatureCollectorBankOutput) -> pd.DataFrame:
         json = vars(bank)
         json = rename_russian_features(json)
