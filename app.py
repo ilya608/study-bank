@@ -58,7 +58,7 @@ templates = Jinja2Templates(directory="static/templates")
 
 print('okey')
 
-logger.info('initialize logger', extra={'reqId': 'nodata'})
+logger.info('initialize logger', extra={'reqId': uuid.uuid4()})
 
 def generate_request_id():
     return str(uuid.uuid4())
