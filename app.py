@@ -55,6 +55,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 templates = Jinja2Templates(directory="static/templates")
 
+logger.info('initialize logger', extra={'reqId': 'nodata'})
 
 def generate_request_id():
     return str(uuid.uuid4())
