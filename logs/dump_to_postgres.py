@@ -34,6 +34,7 @@ with open('app.log', 'r') as log_file:
         new_logs = []
         max_logs = 0
         for line in log_file:
+            print('new line:', line)
             log_parts = line.strip().split(' - ')
             if len(log_parts) == 4:
                 log_time_str, level, req_id, message = log_parts
