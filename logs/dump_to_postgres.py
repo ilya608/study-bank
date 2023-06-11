@@ -67,5 +67,4 @@ with open('app.log', 'r') as log_file:
 
             cursor.close()
 
-        # Пауза на 1 минуту
         time.sleep(5)
