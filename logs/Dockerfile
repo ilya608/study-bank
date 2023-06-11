@@ -4,7 +4,7 @@ FROM python:3.9
 
 # Копирование приложения и файла зависимостей в контейнер
 
-COPY ../ /app/
+COPY . /app/
 WORKDIR /app
 # Установка зависимостей
 RUN pip install -r logs/requirements.txt
