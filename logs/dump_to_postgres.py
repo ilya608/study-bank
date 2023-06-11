@@ -41,6 +41,9 @@ with open('app.log', 'r') as log_file:
                 log_time = time.strptime(log_time_str, '%Y-%m-%d %H:%M:%S,%f')
                 log_time = time.strftime('%Y-%m-%d %H:%M:%S', log_time)  # Преобразование времени в правильный формат
                 new_logs.append((log_time, level, req_id, message))
+            else:
+                print('error: wrong format')
+            print('new_logs: {}'.format(max_logs))
             max_logs += 1
             if max_logs >= 100:
                 max_logs = 0
@@ -48,6 +51,7 @@ with open('app.log', 'r') as log_file:
 
         # Загрузка новых записей в базу данных
         if new_logs:
+            print('connection', pg_connection)
             cursor = pg_connection.cursor()
             insert_query = "INSERT INTO logs (log_time, level, req_id, message) VALUES (%s, %s, %s, %s)"
             cursor.executemany(insert_query, new_logs)
