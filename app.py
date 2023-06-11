@@ -6,10 +6,11 @@ import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
 from fastapi.responses import JSONResponse
+from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from prometheus_client import Summary, Counter
 from prometheus_fastapi_instrumentator import Instrumentator
-from fastapi.staticfiles import StaticFiles
+
 from features_collector.feature_collector_manager import FeatureCollectorManager
 from features_collector.input.feature_collector_bank_input import FeatureCollectorBankInput
 from features_collector.postgres.points_dao import PointsDao
@@ -54,6 +55,8 @@ file_handler.setFormatter(formatter)
 # Добавление обработчика к логгеру
 logger.addHandler(file_handler)
 templates = Jinja2Templates(directory="static/templates")
+
+print('okey')
 
 logger.info('initialize logger', extra={'reqId': 'nodata'})
 
