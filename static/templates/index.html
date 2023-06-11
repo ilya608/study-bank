@@ -44,7 +44,7 @@
             const latitude = latitudeInput.value;
             const longitude = longitudeInput.value;
 
-            const url = `http://0.0.0.0:8000/predict-bank-quality?lat=${latitude}&long=${longitude}`;
+            const url = `/predict-bank-quality?lat=${latitude}&long=${longitude}`;
 
             fetch(url)
                 .then(response => {
@@ -65,7 +65,7 @@
 
         traceButton.addEventListener('click', function () {
             const requestId = requestIdP.textContent.split(':')[1].trim();
-            const traceUrl = `http://0.0.0.0:8000/debug?req-id=${requestId}`;
+            const traceUrl = `debug?req-id=${requestId}`;
             window.location.href = traceUrl;
         });
     });
