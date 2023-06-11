@@ -26,7 +26,7 @@ def update_last_position(position):
 with open('app.log', 'r') as log_file:
     # Получение позиции последнего прочитанного байта
     last_position = get_last_position()
-
+    print(last_position)
     while True:
         # Перемещение указателя чтения на последнюю позицию
         log_file.seek(last_position)
@@ -51,8 +51,6 @@ with open('app.log', 'r') as log_file:
             insert_query = "INSERT INTO logs (log_time, level, req_id, message) VALUES (%s, %s, %s, %s)"
             cursor.executemany(insert_query, new_logs)
 
-            last_position = log_file.tell()
-
             cursor.execute("""
                     INSERT INTO last_upload_position_in_log (file_name, last_position)
                     VALUES (%s, %s)
@@ -60,6 +58,8 @@ with open('app.log', 'r') as log_file:
                     DO UPDATE SET last_position = EXCLUDED.last_position;
                     """, ('app.log', last_position))
             pg_connection.commit()
+            last_position = log_file.tell()
+
             cursor.close()
 
         # Пауза на 1 минуту
