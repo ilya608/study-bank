@@ -8,3 +8,5 @@ COPY . /app/
 WORKDIR /app
 # Установка зависимостей
 RUN pip install -r worker_requirements.txt
+
+CMD ["python3", "dump_to_postgres.py"]
