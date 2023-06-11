@@ -12,7 +12,7 @@ services:
 
   push_logs_to_pg:
     build:
-        context: logs
+        context: .
         dockerfile: Dockerfile
     restart: always
 
