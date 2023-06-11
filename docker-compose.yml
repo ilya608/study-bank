@@ -10,9 +10,11 @@ services:
     environment:
       DATABASE_URL: postgresql://postgres:abc@db:5432/points
 
-#   push_logs_to_pg:
-#     build: .
-#     restart: always
+  push_logs_to_pg:
+    build:
+        context: logs
+        dockerfile: Dockerfile
+    restart: always
 
   prometheus:
     image: prom/prometheus

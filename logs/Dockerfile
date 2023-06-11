@@ -7,4 +7,4 @@ FROM python:3.9
 COPY . /app/
 WORKDIR /app
 # Установка зависимостей
-RUN pip install -r requirements.txt
+RUN pip install -r worker_requirements.txt
