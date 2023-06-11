@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="http://51.250.21.70:3000/d/f5740753-5de6-47cd-8b5e-1fe5f3d9c9c2/metriki-prilozhenija?orgId=1">Метрики</a>
+            </li>
+            <li><a href="/debug">Дебаг</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <form id="coordinate-form">
+        <label for="latitude">Широта:</label>
+        <input type="text" id="latitude" name="latitude" required>
+        <label for="longitude">Долгота:</label>
+        <input type="text" id="longitude" name="longitude" required>
+        <button type="submit" id="calculate-button">Рассчитать</button>
+    </form>
+    <div id="result-container" style="display: none;">
+        <div id="result"></div>
+        <p id="request-id" style="margin-top: 20px;"></p>
+        <button id="trace-button" style="margin-top: 10px;">Trace</button>
+    </div>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('coordinate-form');
+        const latitudeInput = document.getElementById('latitude');
+        const longitudeInput = document.getElementById('longitude');
+        const resultContainer = document.getElementById('result-container');
+        const resultDiv = document.getElementById('result');
+        const requestIdP = document.getElementById('request-id');
+        const traceButton = document.getElementById('trace-button');
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const latitude = latitudeInput.value;
+            const longitude = longitudeInput.value;
+
+            const url = `http://0.0.0.0:8000/predict-bank-quality?lat=${latitude}&long=${longitude}`;
+
+            fetch(url)
+                .then(response => {
+                    const requestId = response.headers.get('request-id');
+                    requestIdP.textContent = `Request ID: ${requestId}`;
+
+                    return response.json();
+                })
+                .then(data => {
+                    const quality = data.quality;
+                    resultDiv.textContent = `Quality: ${quality}`;
+                    resultContainer.style.display = 'block';
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        });
+
+        traceButton.addEventListener('click', function () {
+            const requestId = requestIdP.textContent.split(':')[1].trim();
+            const traceUrl = `http://0.0.0.0:8000/debug?req-id=${requestId}`;
+            window.location.href = traceUrl;
+        });
+    });
+</script>
+</body>
+</html>

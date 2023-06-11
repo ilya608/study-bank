@@ -9,15 +9,10 @@ services:
       - "8000:8000"
     environment:
       DATABASE_URL: postgresql://postgres:abc@db:5432/points
-# база будет удаленная
-#   db:
-#     image: postgres
-#     ports:
-#         - "5432:5432"
-#     environment:
-#       POSTGRES_USER: postgres
-#       POSTGRES_PASSWORD: abc
-#       POSTGRES_DB: points
+
+#   push_logs_to_pg:
+#     build: .
+#     restart: always
 
   prometheus:
     image: prom/prometheus
