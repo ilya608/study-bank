@@ -13,7 +13,7 @@ services:
   push_logs_to_pg:
     build:
         context: .
-        dockerfile: Dockerfile
+        dockerfile: logs/Dockerfile
     restart: always
 
   prometheus:

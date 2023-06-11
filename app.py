@@ -75,6 +75,11 @@ def predict(req_id: str):
     return logs_dao.select_logs(req_id)
 
 
+@app.get("/config")
+def config():
+    return JSONResponse({'host': '51.250.21.70'})
+
+
 @REQUEST_TIME.time()
 @app.get("/predict-bank-quality")
 def predict(lat: float, long: float):

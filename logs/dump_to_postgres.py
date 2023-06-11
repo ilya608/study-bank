@@ -1,6 +1,6 @@
 import time
 
-from features_collector.postgres.postgres_connection import get_pg_connection, logs_pg_connection
+from features_collector.postgres.postgres_connection import logs_pg_connection
 
 pg_connection = logs_pg_connection()
 
