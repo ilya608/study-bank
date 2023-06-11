@@ -42,7 +42,7 @@ logger = logging.getLogger('my_app')
 logger.setLevel(logging.DEBUG)
 
 # Создание обработчика для записи логов в файл
-file_handler = logging.FileHandler('logs/app.log')
+file_handler = logging.FileHandler('app.log')
 file_handler.setLevel(logging.DEBUG)
 
 # Создание форматтера для указания формата записи логов
