@@ -16,7 +16,7 @@ services:
     build:
         context: .
         dockerfile: logs/Dockerfile
-#     command: python3 logs/dump_to_postgres.py
+    command: python3 logs/dump_to_postgres.py
     restart: always
     volumes:
       - app-logs:/app/logs
