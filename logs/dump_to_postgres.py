@@ -26,7 +26,7 @@ def update_last_position(position):
 
 print(os.getcwd())
 # Открытие файла логов в режиме чтения
-with open('app.log', 'r') as log_file:
+with open('logs/app.log', 'r') as log_file:
     # Получение позиции последнего прочитанного байта
     # last_position = get_last_position()
     # print(last_position)
