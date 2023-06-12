@@ -15,7 +15,7 @@ services:
   push_logs_to_pg:
     build:
         context: .
-        dockerfile: logs/Dockerfile
+        dockerfile: logs/Docker file
     command: python3 logs/dump_to_postgres.py
     restart: always
     volumes:

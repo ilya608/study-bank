@@ -1,5 +1,6 @@
 import logging
 import pickle
+import random
 import uuid
 
 import uvicorn
@@ -89,6 +90,7 @@ def config():
 def predict(lat: float, long: float):
     UPDATE_COUNT.inc(1)
     req_id = generate_request_id()
+    logger.error("error test", extra={'reqId': req_id})
     logger.info('handle request: lat={}, long={}'.format(lat, long), extra={'reqId': req_id})
 
     feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long)
