@@ -1,6 +1,7 @@
 import time
-
+print('hello1')
 from features_collector.postgres.postgres_connection import logs_pg_connection
+print('hello2')
 
 pg_connection = logs_pg_connection()
 
