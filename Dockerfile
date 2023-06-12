@@ -9,5 +9,3 @@ WORKDIR /app
 RUN pip install -r requirements.txt
 
 RUN mkdir --parents ~/.postgresql && wget "https://storage.yandexcloud.net/cloud-certs/CA.pem" --output-document ~/.postgresql/root.crt && chmod 0600 ~/.postgresql/root.crt
-
-CMD ["python3", "logs/dump_to_postgres.py"]

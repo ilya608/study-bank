@@ -1,3 +1,4 @@
+import os
 import time
 print('hello1')
 from features_collector.postgres.postgres_connection import logs_pg_connection
@@ -22,7 +23,7 @@ def update_last_position(position):
     pg_connection.commit()
     cursor.close()
 
-
+print(os.getcwd())
 # Открытие файла логов в режиме чтения
 with open('app.log', 'r') as log_file:
     # Получение позиции последнего прочитанного байта
