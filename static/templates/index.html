@@ -65,7 +65,7 @@
 
         traceButton.addEventListener('click', function () {
             const requestId = requestIdP.textContent.split(':')[1].trim();
-            const traceUrl = `http://51.250.21.70:8000debug?req-id=${requestId}`;
+            const traceUrl = `http://51.250.21.70:8000/debug?req-id=${requestId}`;
             window.location.href = traceUrl;
         });
     });
