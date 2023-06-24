@@ -19,10 +19,15 @@
     <div class="container">
         <div class="column">
             <form id="coordinate-form">
-                <label for="latitude">Широта:</label>
-                <input type="text" id="latitude" name="latitude" required>
-                <label for="longitude">Долгота:</label>
-                <input type="text" id="longitude" name="longitude" required>
+                <h2>Координаты</h2>
+                <div class="form-group">
+                    <label for="latitude">Широта:</label>
+                    <input type="text" id="latitude" name="latitude" required>
+                </div>
+                <div class="form-group">
+                    <label for="longitude">Долгота:</label>
+                    <input type="text" id="longitude" name="longitude" required>
+                </div>
                 <div id="calculate-button-container" class="center">
                     <button type="submit" id="calculate-button">Рассчитать flame</button>
                 </div>
@@ -30,14 +35,23 @@
         </div>
         <div class="column">
             <form id="menu-form">
-                <label for="atm-group">ATM Group:</label>
-                <select id="atm-group" name="atm-group"></select>
-                <label for="city">City:</label>
-                <select id="city" name="city"></select>
-                <label for="region">Region:</label>
-                <select id="region" name="region"></select>
-                <label for="state">State:</label>
-                <select id="state" name="state"></select>
+                <h2>Меню</h2>
+                <div class="form-group">
+                    <label for="atm-group">ATM Group:</label>
+                    <select id="atm-group" name="atm-group"></select>
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <select id="city" name="city"></select>
+                </div>
+                <div class="form-group">
+                    <label for="region">Region:</label>
+                    <select id="region" name="region"></select>
+                </div>
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <select id="state" name="state"></select>
+                </div>
             </form>
         </div>
     </div>
@@ -113,8 +127,6 @@
 
             const latitude = latitudeInput.value;
             const longitude = longitudeInput.value;
-
-
             const atmGroup = atmGroupSelect.value;
             const city = citySelect.value;
             const region = regionSelect.value;
@@ -123,16 +135,13 @@
             // Формируем URL-адрес с параметрами
             const url = `http://51.250.21.70:8000/predict-bank-quality-debug?lat=${latitude}&long=${longitude}&atm_group=${atmGroup}&city=${city}&region=${region}&state=${state}`;
 
-
             fetch(url)
-                .then(response => {
-                    requestHeaders = response.headers
-                    return response.json()
-                })
-                .then(data => {
-                    const quality = data.quality;
-                    resultDiv.textContent = `Quality: ${quality}`;
-                    resultContainer.style.display = 'block';
+                .then(response => response.text())
+                .then(html => {
+                    // Отображаем результат на новой странице
+                    document.open();
+                    document.write(html);
+                    document.close();
                 })
                 .catch(error => {
                     console.error('Ошибка:', error);
