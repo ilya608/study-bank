@@ -8,20 +8,39 @@
     <nav>
         <ul class="menu">
             <li><a href="/">Главная</a></li>
-            <li><a href="http://51.250.21.70:3000/d/dc778099-c596-4423-8b34-0e76e51c22a8/metriki-prilozhenija">Метрики</a>
+            <li>
+                <a href="http://51.250.21.70:3000/d/dc778099-c596-4423-8b34-0e76e51c22a8/metriki-prilozhenija">Метрики</a>
             </li>
             <li><a href="/debug">Дебаг</a></li>
         </ul>
     </nav>
 </header>
 <main>
-    <form id="coordinate-form">
-        <label for="latitude">Широта:</label>
-        <input type="text" id="latitude" name="latitude" required>
-        <label for="longitude">Долгота:</label>
-        <input type="text" id="longitude" name="longitude" required>
-        <button type="submit" id="calculate-button">Рассчитать</button>
-    </form>
+    <div class="container">
+        <div class="column">
+            <form id="coordinate-form">
+                <label for="latitude">Широта:</label>
+                <input type="text" id="latitude" name="latitude" required>
+                <label for="longitude">Долгота:</label>
+                <input type="text" id="longitude" name="longitude" required>
+                <div id="calculate-button-container" class="center">
+                    <button type="submit" id="calculate-button">Рассчитать</button>
+                </div>
+            </form>
+        </div>
+        <div class="column">
+            <form id="menu-form">
+                <label for="atm-group">ATM Group:</label>
+                <select id="atm-group" name="atm-group"></select>
+                <label for="city">City:</label>
+                <select id="city" name="city"></select>
+                <label for="region">Region:</label>
+                <select id="region" name="region"></select>
+                <label for="state">State:</label>
+                <select id="state" name="state"></select>
+            </form>
+        </div>
+    </div>
     <div id="result-container" style="display: none;">
         <div id="result"></div>
         <p id="request-id" style="margin-top: 20px;"></p>
@@ -33,10 +52,61 @@
         const form = document.getElementById('coordinate-form');
         const latitudeInput = document.getElementById('latitude');
         const longitudeInput = document.getElementById('longitude');
+        const atmGroupSelect = document.getElementById('atm-group');
+        const citySelect = document.getElementById('city');
+        const regionSelect = document.getElementById('region');
+        const stateSelect = document.getElementById('state');
         const resultContainer = document.getElementById('result-container');
         const resultDiv = document.getElementById('result');
         const requestIdP = document.getElementById('request-id');
         const traceButton = document.getElementById('trace-button');
+        let requestHeaders;
+
+        function fillDropdowns(data) {
+            const {atm_group, cities, regions, states} = data;
+
+            // Заполнение списка ATM Group
+            atm_group.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                atmGroupSelect.appendChild(option);
+            });
+
+            // Заполнение списка City
+            cities.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                citySelect.appendChild(option);
+            });
+
+            // Заполнение списка Region
+            regions.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                regionSelect.appendChild(option);
+            });
+
+            // Заполнение списка State
+            states.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                stateSelect.appendChild(option);
+            });
+        }
+
+        // Загрузка данных для выпадающих списков из ручки http://0.0.0.0:8000/menu-items
+        fetch('http://0.0.0.0:8000/menu-items')
+            .then(response => response.json())
+            .then(data => {
+                fillDropdowns(data);
+            })
+            .catch(error => {
+                console.error('Ошибка при получении данных:', error);
+            });
 
         form.addEventListener('submit', function (event) {
             event.preventDefault();
@@ -44,14 +114,20 @@
             const latitude = latitudeInput.value;
             const longitude = longitudeInput.value;
 
-            const url = `http://51.250.21.70:8000/predict-bank-quality?lat=${latitude}&long=${longitude}`;
+
+            const atmGroup = atmGroupSelect.value;
+            const city = citySelect.value;
+            const region = regionSelect.value;
+            const state = stateSelect.value;
+
+            // Формируем URL-адрес с параметрами
+            const url = `http://0.0.0.0:8000/predict-bank-quality?lat=${latitude}&long=${longitude}&atm_group=${atmGroup}&city=${city}&region=${region}&state=${state}`;
+
 
             fetch(url)
                 .then(response => {
-                    const requestId = response.headers.get('request-id');
-                    requestIdP.textContent = `Request ID: ${requestId}`;
-
-                    return response.json();
+                    requestHeaders = response.headers
+                    return response.json()
                 })
                 .then(data => {
                     const quality = data.quality;
@@ -64,8 +140,8 @@
         });
 
         traceButton.addEventListener('click', function () {
-            const requestId = requestIdP.textContent.split(':')[1].trim();
-            const traceUrl = `http://51.250.21.70:8000/debug?req-id=${requestId}`;
+            const requestId = requestHeaders.get('request-id');
+            const traceUrl = `http://0.0.0.0:8000/debug?req-id=${requestId}`;
             window.location.href = traceUrl;
         });
     });
