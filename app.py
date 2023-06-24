@@ -2,7 +2,7 @@ import logging
 import pickle
 import random
 import uuid
-
+from pyinstrument import Profiler
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
@@ -99,6 +99,9 @@ def menu_items():
 @REQUEST_TIME.time()
 @app.get("/predict-bank-quality")
 def predict(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+    profiler = Profiler()
+    profiler.start()
+
     UPDATE_COUNT.inc(1)
     req_id = generate_request_id()
     logger.info('handle request: lat={}, long={}'.format(lat, long), extra={'reqId': req_id})
@@ -113,6 +116,8 @@ def predict(lat: float, long: float, atm_group: float, city: str, region: str, s
     content = {"quality": quality[0]}
     headers = {'Request-Id': req_id}
 
+    profiler.stop()
+    profiler.print()
     return JSONResponse(content=content, headers=headers)
 
 
