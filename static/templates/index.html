@@ -121,7 +121,7 @@
             const state = stateSelect.value;
 
             // Формируем URL-адрес с параметрами
-            const url = `http://51.250.21.70:8000/predict-bank-quality?lat=${latitude}&long=${longitude}&atm_group=${atmGroup}&city=${city}&region=${region}&state=${state}`;
+            const url = `http://51.250.21.70:8000/predict-bank-quality?debug=false&lat=${latitude}&long=${longitude}&atm_group=${atmGroup}&city=${city}&region=${region}&state=${state}`;
 
 
             fetch(url)
