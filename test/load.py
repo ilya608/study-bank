@@ -11,10 +11,10 @@ def f():
     while True:
         now = datetime.datetime.now()
         for i in range(100):
+            r = requests.get(url)
             if i % 100 == 0:
                 print(i)
-            r = requests.get(url)
-            # print(f"Status Code: {r.status_code}, Content: {r.text}")
+                print(f"Status Code: {r.status_code}, Content: {r.text}")
         print(datetime.datetime.now() - now)
         time.sleep(0.2)
 
