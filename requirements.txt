@@ -11,4 +11,3 @@ prometheus-client
 prometheus-fastapi-instrumentator
 jinja2
 pyinstrument
-pyflamegraph
