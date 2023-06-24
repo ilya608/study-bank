@@ -69,6 +69,11 @@ def generate_request_id():
     return str(uuid.uuid4())
 
 
+@app.get("/admin", response_class=HTMLResponse)
+def index(request: Request):
+    return templates.TemplateResponse("admin.html", {"request": request})
+
+
 @app.get("/", response_class=HTMLResponse)
 def index(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})

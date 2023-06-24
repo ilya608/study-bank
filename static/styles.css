@@ -86,3 +86,11 @@ button {
 #trace-button {
     margin-top: 10px;
 }
+
+#flame-graph-button {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
