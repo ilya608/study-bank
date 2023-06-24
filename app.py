@@ -1,8 +1,7 @@
 import logging
 import pickle
-import random
 import uuid
-from pyinstrument import Profiler
+
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
@@ -11,6 +10,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from prometheus_client import Summary, Counter
 from prometheus_fastapi_instrumentator import Instrumentator
+from pyinstrument import Profiler
 
 from features_collector.feature_collector_manager import FeatureCollectorManager
 from features_collector.input.feature_collector_bank_input import FeatureCollectorBankInput
@@ -95,12 +95,18 @@ def menu_items():
     items_json = menu_dao.get_menu_data()
     return JSONResponse(items_json)
 
+@app.get("/menu-items")
+def menu_items():
+    items_json = menu_dao.get_menu_data()
+    return JSONResponse(items_json)
 
 @REQUEST_TIME.time()
 @app.get("/predict-bank-quality")
-def predict(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
-    profiler = Profiler()
-    profiler.start()
+def predict(lat: float, long: float, atm_group: float, city: str, region: str, state: str, debug: bool):
+    profiler = None
+    if debug:
+        profiler = Profiler()
+        profiler.start()
 
     UPDATE_COUNT.inc(1)
     req_id = generate_request_id()
@@ -116,8 +122,10 @@ def predict(lat: float, long: float, atm_group: float, city: str, region: str, s
     content = {"quality": quality[0]}
     headers = {'Request-Id': req_id}
 
-    profiler.stop()
-    profiler.print()
+    if debug:
+        profiler.stop()
+        content['dump'] = profiler.output_text()
+
     return JSONResponse(content=content, headers=headers)
 
 
