@@ -33,6 +33,15 @@ main {
     margin: 20px;
 }
 
+.container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    flex-basis: 45%;
+}
+
 form {
     margin-bottom: 20px;
 }
@@ -42,13 +51,14 @@ label {
     margin-bottom: 5px;
 }
 
-input[type="text"] {
-    width: 200px;
+input[type="text"],
+select {
+    width: 100%;
     padding: 5px;
 }
 
 button {
-    padding: 5px 10px;
+    padding: 10px 20px;
     background-color: #333;
     color: #fff;
     border: none;
@@ -60,4 +70,19 @@ button {
     padding: 10px;
     border: 1px solid #ccc;
     background-color: #f9f9f9;
+}
+
+.center {
+    display: flex;
+    justify-content: center;
+}
+
+#calculate-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+#trace-button {
+    margin-top: 10px;
 }

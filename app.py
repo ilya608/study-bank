@@ -14,6 +14,8 @@ from prometheus_fastapi_instrumentator import Instrumentator
 
 from features_collector.feature_collector_manager import FeatureCollectorManager
 from features_collector.input.feature_collector_bank_input import FeatureCollectorBankInput
+from features_collector.postgres.avg_dao import AvgDao
+from features_collector.postgres.menu_dao import MenuDao
 from features_collector.postgres.points_dao import PointsDao
 from features_collector.postgres.postgres_connection import get_pg_connection
 from logs.logs_dao import LogsDao
@@ -30,11 +32,13 @@ Instrumentator().instrument(app).expose(app)
 
 pg_connection = get_pg_connection()
 points_dao = PointsDao(pg_connection)
+avg_dao = AvgDao(pg_connection)
 logs_dao = LogsDao(pg_connection)
+menu_dao = MenuDao(pg_connection)
 
 with open("ml/models/atm_best.pkl", "rb") as f:
     model = pickle.load(f)
-feature_collector_manager = FeatureCollectorManager(points_dao)
+feature_collector_manager = FeatureCollectorManager(points_dao, avg_dao)
 predictor = Predictor(model)
 
 feature_transformer_for_ml = FeatureTransformerForMl()
@@ -61,6 +65,7 @@ print('okey')
 
 logger.info('initialize logger', extra={'reqId': uuid.uuid4()})
 
+
 def generate_request_id():
     return str(uuid.uuid4())
 
@@ -85,14 +90,20 @@ def config():
     return JSONResponse({'host': '51.250.21.70'})
 
 
+@app.get("/menu-items")
+def menu_items():
+    items_json = menu_dao.get_menu_data()
+    return JSONResponse(items_json)
+
+
 @REQUEST_TIME.time()
 @app.get("/predict-bank-quality")
-def predict(lat: float, long: float):
+def predict(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
     UPDATE_COUNT.inc(1)
     req_id = generate_request_id()
     logger.info('handle request: lat={}, long={}'.format(lat, long), extra={'reqId': req_id})
 
-    feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long)
+    feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long, atm_group=atm_group, city=city, region=region, state=state)
     feature_collector_bank_output = feature_collector_manager.collect_features(feature_collector_bank_input, logger,
                                                                                req_id)
 

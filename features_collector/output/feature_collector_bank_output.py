@@ -4,6 +4,7 @@ from dataclasses import dataclass
 @dataclass
 class FeatureCollectorBankOutput:
     atm_group: float = 0.0
+
     distance_to_fast_food: float = 1000.0
     distance_to_clothes: float = 1000.0
     distance_to_vending_parking: float = 1000.0
@@ -41,9 +42,11 @@ class FeatureCollectorBankOutput:
     distance_to_airport: float = 1000.0
     distance_to_parking: float = 1000.0
     distance_to_parking_underground: float = 1000.0
-    cnt_apart_200m: float = 0.0
-    cnt_banks_200m: float = 0.0
-    cnt_atm_200m: float = 0.0
+    # конец фичей которые есть
+
+    cnt_apart_200m: float = 0.0 # todo можно достать из базы, надо поизучать building_type
+    cnt_banks_200m: float = 0.0 # todo можно достать из базы, надо поизучать building_type
+    cnt_atm_200m: float = 0.0  # todo можно достать из базы, надо поизучать building_type
     cities: str = ''
     regions: str = ''
     states: str = ''
