@@ -4,7 +4,7 @@ import time
 
 import requests
 
-url = 'http://51.250.21.70:8000/predict-bank-quality?lat=34&long=25&atm_group=1022&city=122-%D0%B9%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B0%D0%BB&region=Central%20Federal%20District&state=Altai%20Krai'
+url = 'http://51.250.21.70:8000/predict-bank-quality?debug=false&lat=34&long=25&atm_group=1022&city=122-%D0%B9%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B0%D0%BB&region=Central%20Federal%20District&state=Altai%20Krai'
 
 
 def f():

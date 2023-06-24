@@ -11,7 +11,6 @@ from fastapi.templating import Jinja2Templates
 from prometheus_client import Summary, Counter
 from prometheus_fastapi_instrumentator import Instrumentator
 from pyinstrument import Profiler
-
 from features_collector.feature_collector_manager import FeatureCollectorManager
 from features_collector.input.feature_collector_bank_input import FeatureCollectorBankInput
 from features_collector.postgres.avg_dao import AvgDao
@@ -95,24 +94,34 @@ def menu_items():
     items_json = menu_dao.get_menu_data()
     return JSONResponse(items_json)
 
+
 @app.get("/menu-items")
 def menu_items():
     items_json = menu_dao.get_menu_data()
     return JSONResponse(items_json)
 
-@REQUEST_TIME.time()
-@app.get("/predict-bank-quality")
-def predict(lat: float, long: float, atm_group: float, city: str, region: str, state: str, debug: bool):
-    profiler = None
-    if debug:
-        profiler = Profiler()
-        profiler.start()
+@app.get("/predict-bank-quality-debug", response_class=HTMLResponse)
+def predict_debug(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+    profiler = Profiler()
+    profiler.start()
+    predict(lat, long, atm_group, city, region, state)
+    profiler.stop()
+    return profiler.output_html()
 
+@app.get("/predict-bank-quality")
+def predict(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+    content = predict_inner(lat, long, atm_group, city, region, state)
+
+    return JSONResponse(content=content['content'], headers=content['headers'])
+
+@REQUEST_TIME.time()
+def predict_inner(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
     UPDATE_COUNT.inc(1)
     req_id = generate_request_id()
     logger.info('handle request: lat={}, long={}'.format(lat, long), extra={'reqId': req_id})
 
-    feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long, atm_group=atm_group, city=city, region=region, state=state)
+    feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long, atm_group=atm_group,
+                                                             city=city, region=region, state=state)
     feature_collector_bank_output = feature_collector_manager.collect_features(feature_collector_bank_input, logger,
                                                                                req_id)
 
@@ -122,11 +131,8 @@ def predict(lat: float, long: float, atm_group: float, city: str, region: str, s
     content = {"quality": quality[0]}
     headers = {'Request-Id': req_id}
 
-    if debug:
-        profiler.stop()
-        content['dump'] = profiler.output_text()
-
-    return JSONResponse(content=content, headers=headers)
+    return {'content': content, 'headers': headers}
+    # return JSONResponse(content=content, headers=headers)
 
 
 if __name__ == "__main__":
