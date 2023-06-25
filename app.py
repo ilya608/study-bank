@@ -101,6 +101,11 @@ def config():
 @app.get("/menu-items")
 def menu_items():
     items_json = menu_dao.get_menu_data()
+
+    bank_names = []
+    for id in items_json['atm_group']:
+        bank_names.append(id_to_bank_name[id])
+    items_json['atm_group'] = bank_names
     return JSONResponse(items_json)
 
 
@@ -115,22 +120,21 @@ def menu_items():
     return JSONResponse(items_json)
 
 @app.get("/predict-bank-quality-debug", response_class=HTMLResponse)
-def predict_debug(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+def predict_debug(lat: float, long: float, atm_group: str, city: str, region: str, state: str):
     profiler = Profiler()
     profiler.start()
-    predict(lat, long, atm_group, city, region, state)
+    predict_inner(lat, long, atm_group, city, region, state)
     profiler.stop()
     return profiler.output_html()
 
 @app.get("/predict-bank-quality")
 def predict(lat: float, long: float, atm_group: str, city: str, region: str, state: str):
-def predict(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
     content = predict_inner(lat, long, atm_group, city, region, state)
 
     return JSONResponse(content=content['content'], headers=content['headers'])
 
 @REQUEST_TIME.time()
-def predict_inner(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+def predict_inner(lat: float, long: float, atm_group: str, city: str, region: str, state: str):
     UPDATE_COUNT.inc(1)
 
     atm_group = bank_name_to_id[atm_group]
