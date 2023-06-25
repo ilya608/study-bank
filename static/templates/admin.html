@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+<body>
+<header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Главная</a></li>
+            <li>
+                <a href="http://51.250.21.70:3000/d/dc778099-c596-4423-8b34-0e76e51c22a8/metriki-prilozhenija">Метрики</a>
+            </li>
+            <li><a href="/debug">Дебаг</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="container">
+        <div class="column">
+            <form id="coordinate-form">
+                <h2>Координаты</h2>
+                <div class="form-group">
+                    <label for="latitude">Широта:</label>
+                    <input type="text" id="latitude" name="latitude" required>
+                </div>
+                <div class="form-group">
+                    <label for="longitude">Долгота:</label>
+                    <input type="text" id="longitude" name="longitude" required>
+                </div>
+                <div id="calculate-button-container" class="center">
+                    <button type="submit" id="calculate-button">Рассчитать flame</button>
+                </div>
+            </form>
+        </div>
+        <div class="column">
+            <form id="menu-form">
+                <h2>Меню</h2>
+                <div class="form-group">
+                    <label for="atm-group">ATM Group:</label>
+                    <select id="atm-group" name="atm-group"></select>
+                </div>
+                <div class="form-group">
+                    <label for="city">City:</label>
+                    <select id="city" name="city"></select>
+                </div>
+                <div class="form-group">
+                    <label for="region">Region:</label>
+                    <select id="region" name="region"></select>
+                </div>
+                <div class="form-group">
+                    <label for="state">State:</label>
+                    <select id="state" name="state"></select>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div id="result-container" style="display: none;">
+        <div id="result"></div>
+        <p id="request-id" style="margin-top: 20px;"></p>
+        <button id="trace-button" style="margin-top: 10px;">Trace</button>
+    </div>
+</main>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('coordinate-form');
+        const latitudeInput = document.getElementById('latitude');
+        const longitudeInput = document.getElementById('longitude');
+        const atmGroupSelect = document.getElementById('atm-group');
+        const citySelect = document.getElementById('city');
+        const regionSelect = document.getElementById('region');
+        const stateSelect = document.getElementById('state');
+        const resultContainer = document.getElementById('result-container');
+        const resultDiv = document.getElementById('result');
+        const requestIdP = document.getElementById('request-id');
+        const traceButton = document.getElementById('trace-button');
+        let requestHeaders;
+
+        function fillDropdowns(data) {
+            const {atm_group, cities, regions, states} = data;
+
+            // Заполнение списка ATM Group
+            atm_group.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                atmGroupSelect.appendChild(option);
+            });
+
+            // Заполнение списка City
+            cities.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                citySelect.appendChild(option);
+            });
+
+            // Заполнение списка Region
+            regions.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                regionSelect.appendChild(option);
+            });
+
+            // Заполнение списка State
+            states.forEach(item => {
+                const option = document.createElement('option');
+                option.value = item;
+                option.textContent = item;
+                stateSelect.appendChild(option);
+            });
+        }
+
+        // Загрузка данных для выпадающих списков из ручки http://0.0.0.0:8000/menu-items
+        fetch('http://51.250.21.70:8000/menu-items')
+            .then(response => response.json())
+            .then(data => {
+                fillDropdowns(data);
+            })
+            .catch(error => {
+                console.error('Ошибка при получении данных:', error);
+            });
+
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const latitude = latitudeInput.value;
+            const longitude = longitudeInput.value;
+            const atmGroup = atmGroupSelect.value;
+            const city = citySelect.value;
+            const region = regionSelect.value;
+            const state = stateSelect.value;
+
+            // Формируем URL-адрес с параметрами
+            const url = `http://51.250.21.70:8000/predict-bank-quality-debug?lat=${latitude}&long=${longitude}&atm_group=${atmGroup}&city=${city}&region=${region}&state=${state}`;
+
+            fetch(url)
+                .then(response => response.text())
+                .then(html => {
+                    // Отображаем результат на новой странице
+                    document.open();
+                    document.write(html);
+                    document.close();
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        });
+
+        traceButton.addEventListener('click', function () {
+            const requestId = requestHeaders.get('request-id');
+            const traceUrl = `http://51.250.21.70:8000/debug?req-id=${requestId}`;
+            window.location.href = traceUrl;
+        });
+    });
+</script>
+</body>
+</html>

@@ -10,7 +10,7 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from prometheus_client import Summary, Counter
 from prometheus_fastapi_instrumentator import Instrumentator
-
+from pyinstrument import Profiler
 from features_collector.feature_collector_manager import FeatureCollectorManager
 from features_collector.input.feature_collector_bank_input import FeatureCollectorBankInput
 from features_collector.postgres.avg_dao import AvgDao
@@ -62,6 +62,7 @@ file_handler.setFormatter(formatter)
 logger.addHandler(file_handler)
 templates = Jinja2Templates(directory="static/templates")
 
+print('okey')
 
 logger.info('initialize logger', extra={'reqId': uuid.uuid4()})
 
@@ -70,6 +71,11 @@ bank_name_to_id = {value: float(key) for key, value in id_to_bank_name.items()}
 
 def generate_request_id():
     return str(uuid.uuid4())
+
+
+@app.get("/admin", response_class=HTMLResponse)
+def index(request: Request):
+    return templates.TemplateResponse("admin.html", {"request": request})
 
 
 @app.get("/", response_class=HTMLResponse)
@@ -95,25 +101,44 @@ def config():
 @app.get("/menu-items")
 def menu_items():
     items_json = menu_dao.get_menu_data()
+    return JSONResponse(items_json)
+
+
+@app.get("/menu-items")
+def menu_items():
+    items_json = menu_dao.get_menu_data()
 
     bank_names = []
     for id in items_json['atm_group']:
         bank_names.append(id_to_bank_name[id])
     items_json['atm_group'] = bank_names
-
     return JSONResponse(items_json)
 
+@app.get("/predict-bank-quality-debug", response_class=HTMLResponse)
+def predict_debug(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+    profiler = Profiler()
+    profiler.start()
+    predict(lat, long, atm_group, city, region, state)
+    profiler.stop()
+    return profiler.output_html()
 
-@REQUEST_TIME.time()
 @app.get("/predict-bank-quality")
 def predict(lat: float, long: float, atm_group: str, city: str, region: str, state: str):
+def predict(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+    content = predict_inner(lat, long, atm_group, city, region, state)
+
+    return JSONResponse(content=content['content'], headers=content['headers'])
+
+@REQUEST_TIME.time()
+def predict_inner(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
     UPDATE_COUNT.inc(1)
 
     atm_group = bank_name_to_id[atm_group]
     req_id = generate_request_id()
     logger.info('handle request: lat={}, long={}'.format(lat, long), extra={'reqId': req_id})
 
-    feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long, atm_group=atm_group, city=city, region=region, state=state)
+    feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long, atm_group=atm_group,
+                                                             city=city, region=region, state=state)
     feature_collector_bank_output = feature_collector_manager.collect_features(feature_collector_bank_input, logger,
                                                                                req_id)
 
@@ -123,7 +148,8 @@ def predict(lat: float, long: float, atm_group: str, city: str, region: str, sta
     content = {"quality": str(round((quality[0] - (-0.145001)) / (0.218608 - (-0.145001)) * 100, 2)) + '%'}
     headers = {'Request-Id': req_id}
 
-    return JSONResponse(content=content, headers=headers)
+    return {'content': content, 'headers': headers}
+    # return JSONResponse(content=content, headers=headers)
 
 
 if __name__ == "__main__":
