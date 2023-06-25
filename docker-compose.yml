@@ -1,0 +1,37 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    command: uvicorn app:app --host 0.0.0.0 --port 8000
+    restart: always
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: postgresql://postgres:abc@db:5432/points
+    volumes:
+      - app-logs:/app/logs
+
+  push_logs_to_pg:
+    build:
+        context: .
+        dockerfile: logs/Dockerfile
+    command: python3 logs/dump_to_postgres.py
+    restart: always
+    volumes:
+      - app-logs:/app/logs
+
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+
+  grafana:
+    hostname: grafana
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+volumes:
+  app-logs:

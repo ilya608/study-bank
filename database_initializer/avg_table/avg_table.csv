@@ -1,0 +1,929 @@
+"""avg_feature"",""avg_type"",""target"""
+'32','atm_group',0.0129950437947231
+'496','atm_group',-0.0476891498979768
+'1022','atm_group',-0.0886849455053442
+'1942','atm_group',0.00310950603188923
+'3185','atm_group',-0.0435383409947144
+'5478','atm_group',-0.0343774327698744
+'8083','atm_group',0.151131875608437
+'122-й квартал','cities',-0.0242208400962373
+'7-й км Мамаевской ж/д ветки','cities',0.0444876412447214
+'Abakan','cities',0.0846376293359555
+'Achinsk','cities',0.0403630370070098
+'Afipskiy','cities',-0.0635528558337797
+'Aginskoye','cities',-0.0321482249310455
+'Akishevo','cities',-0.12499774436614
+'Aksay','cities',0.068864378049382
+'Aksha','cities',-0.0592366742744187
+'Aldan','cities',0.105216377637832
+'Aleksin','cities',-0.0637331507714288
+'Alexandrov','cities',-0.0416193391177705
+'Alexeyevskoye','cities',-0.0772106608897258
+'Aleysk','cities',0.0351650334385943
+'Almetyevsk','cities',-0.060821791437851
+'Amursk','cities',0.170549374348345
+'Anapa','cities',-0.00719319108739138
+'Andreapol','cities',-0.0585067354777919
+'Angarsk','cities',-0.0512845901588342
+'Aprelevka','cities',-0.0338263582867411
+'Aramil','cities',-0.0607418095716116
+'Ardatov','cities',-0.0538174043302952
+'Arkhangelsk','cities',-0.034320137670064
+'Armavir','cities',-0.0900534451413137
+'Arseniev','cities',-0.0089823048723401
+'Artyom','cities',0.0783726749804861
+'Arzamas','cities',-0.0766050935341908
+'Asino','cities',0.0899940669203896
+'Askiz','cities',-0.128701676047653
+'Astrakhan','cities',0.0125865826763904
+'Atamanovka','cities',-0.0317211896154683
+'Atkarsk','cities',-0.0238002989903667
+'Azov','cities',0.0446963036572652
+'Bachatsky','cities',-0.0653027890358801
+'Bagayevskaya','cities',-0.0381381337942585
+'Bakal','cities',-0.103176843749729
+'Balabanovo','cities',-0.00310532709598365
+'Balakhta','cities',-0.0899168962294123
+'Balakovo','cities',0.00568179278401653
+'Balashikha','cities',-0.0157999727184692
+'Balashov','cities',-0.0602110056769089
+'Barabash','cities',0.10282708819304
+'Barabinsk','cities',-0.135506766589596
+'Barnaul','cities',-0.0245758995371981
+'Barvikha','cities',0.0150346895660041
+'Baryshevo','cities',-0.0829209963517429
+'Bashmakovo','cities',-0.0618989356452111
+'Bataysk','cities',-0.0675326200522361
+'Bavly','cities',-0.0786264662988671
+'Bazarnyye Mataki','cities',-0.0625526290792645
+'Belaya Kalitva','cities',0.0317999603420224
+'Belebei','cities',-0.0930147180390251
+'Belgorod','cities',-0.0516413215274063
+'Belinskiy','cities',-0.0929152371954405
+'Belogorsk','cities',-0.0309418158079384
+'Belokurikha','cities',-0.0807847494438475
+'Belorechensk','cities',-0.0431317442744511
+'Belovo','cities',0.0381647015857712
+'Belyov','cities',-0.031844098452176
+'Berdsk','cities',-0.068140689404366
+'Berdsk municipality','cities',-0.0598049417419207
+'Berezniki','cities',-0.13563559338573
+'Berezovka','cities',0.184538793628734
+'Beryozovsky','cities',-0.0332190849683886
+'Beryozovsky Rayon','cities',-0.0431278690777256
+'Bichura','cities',0.10694792849549
+'Bikin','cities',0.0740124486908595
+'Birobidzhan','cities',0.034479433019009
+'Birsk','cities',-0.107482385628736
+'Biysk','cities',-0.0297354505228784
+'Bizhbulyak','cities',-0.0816133313264786
+'Blagoveshchensk','cities',0.0350894330971495
+'Blizhniye Prudishchi','cities',-0.0453146480952616
+'Bogoroditsk','cities',-0.0863828930824028
+'Bogorodsk','cities',-0.12339282175354
+'Bogorodsky city district','cities',-0.0445754658123516
+'Boguchany','cities',0.0609574322656617
+'Bolotnoye','cities',-0.111909739854482
+'Bolsherechye','cities',-0.0307009095271224
+'Bolshiye Uki','cities',0.082403406602567
+'Bolshoy Kamen','cities',0.120490715771745
+'Bor','cities',0.137666978103842
+'Borisoglebsk','cities',0.0211519080648307
+'Borisovka','cities',-0.0624655218950261
+'Borodino','cities',-0.0382423845627255
+'Borovichi','cities',0.0025245890113539
+'Borovsky District','cities',0.156667780313235
+'Borzya','cities',-0.0894814729289993
+'Bratsk','cities',-0.0492228700130963
+'Britovo','cities',0.127461081218245
+'Bronnitsy','cities',0.0229678483131272
+'Bryansk','cities',-0.0299012040416337
+'Bugulma','cities',-0.10538425189331
+'Bykovo','cities',-0.0984649518750986
+'Chadan','cities',0.0061397193074199
+'Chaikovsky','cities',-0.0326724767802973
+'Chaltyr'','cities',-0.0902311978368489
+'Chapaevsk','cities',-0.0956005780317603
+'Cheboksary','cities',-0.0624026413764094
+'Chegdomyn','cities',0.0826327111513595
+'Chekhov','cities',-0.0534729446328357
+'Chekmagush','cities',-0.0519998491731254
+'Chelyabinsk','cities',-0.00535576020953218
+'Cheremkhovo','cities',-0.0543074411036607
+'Cherepanovo','cities',-0.0707478192862374
+'Cherepovets','cities',-0.0445098911480981
+'Cherkasovo','cities',-0.0250820993929958
+'Cherlak','cities',-0.0506266855287384
+'Chernigovka','cities',0.0449773769534113
+'Chernogolovka','cities',-0.0972199598679586
+'Chernogorsk','cities',-0.0335991628854891
+'Chistopol','cities',-0.103577657221438
+'Chita','cities',0.0212857220818155
+'Dagomys','cities',-0.093471923330849
+'Dalneretschensk','cities',-0.0691063134249386
+'Danilov','cities',-0.006741917344662
+'Darasun','cities',0.0003324510002315
+'Davydovo','cities',0.184321391332414
+'Dedovsk','cities',0.0213487300369003
+'Derbent','cities',-0.0597556700149849
+'Desnogorsk','cities',-0.0761915260974774
+'Dimitrovgrad','cities',-0.0695431800427816
+'Divnogorsk','cities',0.0002684422721974
+'Dmitrov','cities',-0.00107728742735623
+'Dolgoprudny','cities',0.0346582825568245
+'Domodedovo','cities',0.110878663637863
+'Domodedovsky District','cities',0.120987582938963
+'Donskoj','cities',-0.0408874996869635
+'Drezna','cities',-0.0141613778991022
+'Dubna','cities',0.127557960897614
+'Dubovoye','cities',0.0416825718225698
+'Dudinka','cities',0.194613739170288
+'Dukhovshchina','cities',-0.0049205077426953
+'Dyatkovo','cities',-0.00975048354737743
+'Dzerzhinsk','cities',-0.0122285200720757
+'Elektrogorsk','cities',-0.00093463489205635
+'Elektrostal','cities',-0.0173822064659917
+'Elektrougli','cities',-0.0331427777859155
+'Elista','cities',0.0594403589285891
+'Engels','cities',-0.0369628903065653
+'Ershov','cities',-0.0776218483736334
+'Estosadok','cities',0.0845782670079763
+'Fokino','cities',-0.00629133990098217
+'Fryazino','cities',-0.0272051409698179
+'Furmanov','cities',-0.026079662305338
+'Fyodorovskaya','cities',0.0543352558914627
+'Gagarin','cities',-0.0971994341995142
+'Gatchina','cities',-0.0402037746217028
+'Gelendzhik','cities',0.022819605620577
+'Glazov','cities',-0.114187654530142
+'Golitsyno','cities',0.0051729037548515
+'Gorodovikovsk','cities',0.0371234200938618
+'Goryachiy Klyuch','cities',-0.0812035334943346
+'Gramoteino','cities',-0.085577458540832
+'Gryazi','cities',-0.0186595964887297
+'Gubkin','cities',-0.0298056857177344
+'Guryevsk','cities',-0.0726288855358634
+'Gusev','cities',0.0067842024371123
+'Gusinoozyorsk','cities',0.0672398464866321
+'Iglino','cities',-0.0926823766886107
+'Iki Burul','cities',-0.0908483980967531
+'Ikryanoye','cities',-0.0769278826070025
+'Ilansky','cities',-0.0549761761211473
+'Il’inskiy','cities',-0.0276549747777632
+'Inozemtsevo','cities',-0.0695214252166099
+'Irkutsk','cities',-0.0235616929775605
+'Irkutsk - Sorok pyat','cities',0.182980522039572
+'Isheyevka','cities',-0.127695302590838
+'Ishimbay','cities',-0.0815448073616179
+'Isilkul','cities',0.0148960196088719
+'Iskitim','cities',-0.0371962402475979
+'Issa','cities',-0.0989445613567888
+'Istra','cities',-0.00651089528509339
+'Ivanovka','cities',0.0280890101535686
+'Ivanovo','cities',0.019217540171431
+'Ivanteyevka','cities',0.0257661245849355
+'Izhevsk','cities',-0.0266238435809993
+'Izobilnyy','cities',-0.0683390002984193
+'Kaa-Khem','cities',0.0871316339321213
+'Kabansk','cities',0.0007007466601096
+'Kabardinka','cities',-0.060860591536743
+'Kalach','cities',-0.0333443469722333
+'Kalach-na-Donu','cities',-0.11099766390147
+'Kalachinsk','cities',-0.00862228765018453
+'Kaliningrad','cities',-0.0152416354260699
+'Kalininskaya','cities',-0.0376789439847384
+'Kaluga','cities',-0.0076693429365293
+'Kamen'-Rybolov','cities',-0.0095950470077307
+'Kamenka','cities',-0.0697415187656471
+'Kamensk','cities',-0.0777065973032893
+'Kamensk-Shakhtinsky','cities',0.130504155848104
+'Kameshkovo','cities',-0.0621264031305153
+'Kandalaksha','cities',-0.0928343631858591
+'Kansk','cities',0.0441092543735106
+'Karachev','cities',-0.0294435979163423
+'Karatuzskoye','cities',-0.116102080615439
+'Karmaskaly','cities',-0.103663234797595
+'Kartaly','cities',-0.115594857155089
+'Karymskoe','cities',0.176173033585736
+'Kaspiysk','cities',-0.0591484903640774
+'Kavalerovo','cities',-0.0076094286015769
+'Kazan','cities',-0.0406718047993556
+'Kemerovo','cities',-0.0228423014688932
+'Kesova Gora','cities',-0.0870914301178605
+'Khabarovsk','cities',0.0269221744635087
+'Khadyzhensk','cities',-0.0263716166478273
+'Khandyga','cities',-0.0761503494155294
+'Khasavyurt','cities',-0.0798161909778616
+'Khimki','cities',0.0129991708870339
+'Khor','cities',0.0494728846915422
+'Khorinsk','cities',0.0033829210189574
+'Khotkovo','cities',-0.0339975093373531
+'Khovu-Aksy','cities',-0.0101484011628974
+'Khurba','cities',-0.0010285363586044
+'Kilmez','cities',-0.140712162001567
+'Kimovsk','cities',-0.0662933498874636
+'Kinel','cities',0.01753040129253
+'Kineshma','cities',0.00841713472179505
+'Kingisepp','cities',-0.055418038990601
+'Kireyevsk','cities',-0.0214984362779465
+'Kirov','cities',-0.0444662011166541
+'Kirovo-Chepetsk','cities',-0.0548119777535509
+'Kirovsk','cities',0.017810625156821
+'Kirzhach','cities',0.0435072949653092
+'Kiselyovsk','cities',-0.0418575319813518
+'Kislovodsk','cities',-0.0300131898956044
+'Kizhinga','cities',0.0899190461137906
+'Klin','cities',-0.0715382821118174
+'Klintsy','cities',0.0659597535539239
+'Kochenyovo','cities',-0.0263676603895521
+'Kolchugino','cities',-0.0225105108479568
+'Kolomna','cities',0.0413094004447071
+'Kolpashevo','cities',-0.0438463378350362
+'Kolpino','cities',-0.0289132034498817
+'Koltsovo','cities',-0.00165365568283744
+'Kolyvan','cities',-0.0677314363530018
+'Komsomolsk','cities',0.0584621703297628
+'Komsomolsk-on-Amur','cities',0.0861374570143694
+'Komsomolskiy','cities',-0.0418691406552194
+'Konakovo','cities',-0.0549898827157206
+'Kopeysk','cities',-0.0599531527486726
+'Korolyov','cities',0.0517208274973723
+'Korsakov','cities',0.0444636071011498
+'Kostroma','cities',-0.0250555593763855
+'Kosyakino','cities',0.0559434398121293
+'Kotelniki','cities',0.0627230515446106
+'Kotlas','cities',0.0196037379428982
+'Kotovsk','cities',-0.018934503528354
+'Kovrov','cities',-0.00502546252419899
+'Kozelsk','cities',-0.0737964724865868
+'Kozhevnikovo','cities',0.113385117919765
+'Kozlov','cities',-0.0472834136288043
+'Kozlovka','cities',-0.100670531507957
+'Kraskino','cities',-0.0237296395635399
+'Krasnaya Gorbatka','cities',0.0271467132034804
+'Krasnaya Polyana','cities',-0.0809772537302124
+'Krasnaya Yaruga','cities',-0.0478348534789651
+'Krasnodar','cities',0.0432900107099445
+'Krasnoe-na-Volge','cities',-0.0100950343453385
+'Krasnogorsk','cities',0.0159963114967704
+'Krasnogorsky District','cities',0.0281508203851201
+'Krasnogvardeysky District','cities',0.0374582135254025
+'Krasnokamensk','cities',0.0602137030051099
+'Krasnokamsk','cities',0.0103219956054417
+'Krasnoselkupsky Rayon','cities',-0.0527730751712423
+'Krasnouralsk','cities',-0.118972003867749
+'Krasnoyarsk','cities',0.0329032716435104
+'Krasnoye Selo','cities',-0.0180393153366876
+'Krasny Kut','cities',-0.107266856984098
+'Krasnyy Sulin','cities',-0.0313357707459585
+'Krasnyy Yar','cities',-0.0834865570859077
+'Kronstadt','cities',-0.000426344570367949
+'Kropotkin','cities',-0.059887707093963
+'Krutinka','cities',-0.0560772655674922
+'Ksenyevka','cities',0.0297715529320021
+'Kshenskiy','cities',-0.0409066176738857
+'Kstovo','cities',-0.000739351313985656
+'Kudrovo','cities',-0.006070487885358
+'Kulunda','cities',-0.0002656489437893
+'Kumertau','cities',-0.0703277448798781
+'Kungur','cities',-0.11500565683885
+'Kuragino','cities',0.0302075297832127
+'Kurchatov','cities',-0.0745567388602426
+'Kurgan','cities',0.00990160347895466
+'Kurganinsk','cities',-0.110358659494526
+'Kurovskoye','cities',0.0386516464565449
+'Kursavka','cities',0.0055322061804896
+'Kursk','cities',-0.030233863723638
+'Kurumkan','cities',-0.116281555347499
+'Kutulik','cities',-0.070810203575399
+'Kuvandyk','cities',-0.083016058990036
+'Kuybyshev','cities',-0.0564495302730273
+'Kuznetsk','cities',0.00709454303548381
+'Kyakhta','cities',-0.118839260857209
+'Kyren','cities',0.0980893781525532
+'Kyshtym','cities',-0.095015741582245
+'Kyzyl','cities',0.115802842868145
+'Kyzyl City','cities',0.127108638365001
+'L'gov','cities',-0.0211142284616036
+'Labinsk','cities',-0.0437092566084381
+'Ladushkin','cities',-0.102370477558546
+'Lagan','cities',0.0369155157749633
+'Lakinsk','cities',-0.0633030024752921
+'Lebedyan','cities',0.0377620099586728
+'Leningradskaya','cities',-0.0814763734414148
+'Leninogorsk','cities',-0.0759962261725855
+'Leninsk-Kuznetsky','cities',0.0182233406797579
+'Leninsky District','cities',0.0902087826241921
+'Lensk','cities',-0.0634687385627619
+'Lesosibirsk','cities',0.0571091505867715
+'Lesozavodsk','cities',0.0841633947745465
+'Likino-Dulyovo','cities',0.0506153509030148
+'Linyovo','cities',-0.0827484904197781
+'Lipetsk','cities',-0.0215103828365303
+'Liski','cities',-0.0610831358607364
+'Livny','cities',0.0125746251358135
+'Lobnya','cities',0.029144625613308
+'Lodeynoye Pole','cities',-0.0828624354484838
+'Lomonosov','cities',-0.0412423379629874
+'Lopatino','cities',0.0191004139305943
+'Luchegorsk','cities',0.215607759398923
+'Luga','cities',-0.0309465517326794
+'Lukhovitsy','cities',-0.0310892970183418
+'Luzino','cities',-0.108353532292711
+'Lytkarino','cities',0.0466960773318027
+'Lyubertsy','cities',0.030314663251099
+'Lyudinovo','cities',0.0317883370483966
+'Magadan','cities',-0.0147887959001964
+'Magdagachi','cities',-0.0914868128849095
+'Magnitogorsk','cities',0.0212475315063434
+'Makhachkala','cities',-0.0699038726100007
+'Malino','cities',-0.0089398232599178
+'Maloe Kozino','cities',-0.068285886366451
+'Maloyaroslavets','cities',0.218042586076594
+'Mamadysh','cities',-0.100456758970611
+'Mamonovo','cities',-0.0307052090693979
+'Maryanovka','cities',-0.145001231474754
+'Maykop','cities',-0.0397831750270953
+'Medvedevo Urban Settlement','cities',-0.0274751961229577
+'Medvenka','cities',-0.0968205380426736
+'Meget','cities',-0.120444445204088
+'Melnikovo','cities',0.0678936307171188
+'Mendeleyevsk','cities',-0.11478911513069
+'Meshchovsk','cities',-0.0723321158736696
+'Miass','cities',-0.10057998216663
+'Michurinsk','cities',0.0082015137953592
+'Mikhaylovsk','cities',0.0176092732512285
+'Millerovo','cities',0.0224441119366693
+'Minusinsk','cities',0.0771448063708552
+'Mirny','cities',-0.0734533677721711
+'Mogocha','cities',-0.0420853604828807
+'Molchanovo','cities',-0.109697997451199
+'Molodezgniy','cities',-0.0824079064301717
+'Monchegorsk','cities',0.0376940357261652
+'Morshansk','cities',0.0710089462338125
+'Moscow, city','cities',0.0416987150525217
+'Moshkovo','cities',-0.0581839586042819
+'Moskalenki','cities',0.0283129060824569
+'Moskovskiy','cities',-0.00997994178244245
+'Mosrentgen','cities',-0.060698696067352
+'Mozhaisk','cities',-0.0149147543021679
+'Mozhaysky District','cities',-0.0485749293972902
+'Mozhga','cities',-0.080872939538763
+'Mtsensk','cities',-0.0894748273339185
+'Mukhor-Shibir','cities',0.0482525737565064
+'Murmansk','cities',-0.0163658224745688
+'Murmashi','cities',-0.0936156270803666
+'Murom','cities',-0.00619604062549056
+'Muslyumovo','cities',-0.109884499565484
+'Mytishchi','cities',0.0330907135504997
+'Mytishchi Urban Okrug','cities',0.0554456646767302
+'Naberezhnye Chelny','cities',-0.0816150859551757
+'Nachalovo','cities',-0.0785472947949564
+'Nakhodka','cities',0.0113826881891755
+'Namtsy','cities',-0.117969200600942
+'Narimanov','cities',-0.0574961847171568
+'Naro-Fominsk','cities',0.000224507404857174
+'Nazarovo','cities',0.0287781775718401
+'Nazyvayevsk','cities',0.034881725971114
+'Neftegorsk','cities',-0.0867245470342127
+'Neftekamsk','cities',0.011172563768609
+'Neftekumsk','cities',-0.0525855887294985
+'Nefteyugansk','cities',0.208798925478306
+'Nemchinovka','cities',-0.0399548235760646
+'Nerchinsk','cities',-0.109084331515037
+'Neryungri','cities',0.135748663714559
+'Nevinnomyssk','cities',-0.10720256968982
+'Nikel','cities',0.123188964382416
+'Nikolayevsk-on-Amur','cities',0.154554861732701
+'Nizhnekamsk','cities',-0.0777148815523633
+'Nizhnevartovsk','cities',-0.0908415757733295
+'Nizhnevartovsky District','cities',-0.0064415355801096
+'Nizhniy Kuranakh','cities',0.191317386876794
+'Nizhniy Lomov','cities',-0.0402122292295013
+'Nizhny Novgorod','cities',0.0239168341114683
+'Nizhny Tagil','cities',-0.0653730192611316
+'Noginsk','cities',0.0250865963401989
+'Nogliki','cities',-0.0824427297051441
+'Norilsk','cities',0.146336385099274
+'Novaya Adygeya','cities',0.107538682205516
+'Novikovo','cities',-0.028302077971229
+'Novoaltaysk','cities',-0.0417695560918063
+'Novocheboksarsk','cities',-0.0864699830108358
+'Novocherkassk','cities',-0.0728288382656014
+'Novodvinsk','cities',-0.0716968600068891
+'Novoilyinsk','cities',-0.101425722292996
+'Novokuybyshevsk','cities',-0.0679433372380569
+'Novokuznetsk','cities',-0.0346597554297578
+'Novomichurinsk','cities',-0.107982461018685
+'Novomoskovsk','cities',-0.0480550614239343
+'Novorossiysk','cities',0.0064890466330563
+'Novosibirsk','cities',-0.0160647849847312
+'Novosyolovo','cities',0.168004096098132
+'Novotroitsk','cities',-0.0879131295693603
+'Novovarshavka','cities',-0.0081001737040902
+'Novovelichkovskaya','cities',0.0618753662075843
+'Novozybkov','cities',-0.0690883399283735
+'Novy Urengoy','cities',-0.0591475119656698
+'Novy Urgal','cities',-0.0233859403269156
+'O'lkhovka','cities',-0.0929436409080511
+'Ob','cities',-0.0320280604156553
+'Obluchye','cities',-0.0350226658567603
+'Obninsk','cities',-0.00655054239140613
+'Oboyan'','cities',0.0386521296000196
+'Odesskoye','cities',0.0219443067982297
+'Odintsovo','cities',-0.00241218090651851
+'Okhotsk','cities',0.216680519410841
+'Okhotsky Rayon','cities',0.00916695232469702
+'Oktyabrsky','cities',-0.10096675762169
+'Olenegorsk','cities',0.0128503179219729
+'Omsk','cities',-0.0111833517558431
+'Onokhoy','cities',0.0211084385408086
+'Ordynskoye','cities',-0.145001231474754
+'Orekhovo-Zuyevo','cities',0.0417886336368001
+'Orenburg','cities',-0.0413812517244987
+'Orsk','cities',-0.06940040833229
+'Oryol','cities',0.0155936800103848
+'Osinniki','cities',-0.0448481824499278
+'Ostashkov','cities',-0.0158631716118564
+'Ostrogozhsk','cities',0.0124455950820852
+'Otradny','cities',-0.0400072556503612
+'Ozinki','cities',-0.0566048402061062
+'Pachelma','cities',-0.0525397941859454
+'Parabel','cities',-0.0670876280823732
+'Partisansk','cities',0.00997674154254513
+'Pavlogradka','cities',0.0599506835584016
+'Pavlovsk','cities',-0.0268925024528942
+'Pavlovskaya','cities',-0.0175965412217629
+'Penza','cities',-0.00244315695617108
+'Pereyaslavka','cities',0.0850943146467408
+'Perm','cities',0.00521933493502348
+'Perm District','cities',-0.00645950603847403
+'Pervomaysk','cities',0.0130686225922281
+'Pervomayskoye','cities',0.0876441257382911
+'Pervouralsk','cities',-0.0318742285011316
+'Petra Dubrava','cities',-0.0550035929187169
+'Petropavlovsk-Kamchatsky','cities',0.0347601705203662
+'Petrozavodsk','cities',-0.00934318377324391
+'Petukhovo','cities',-0.113762067104525
+'Petushki','cities',-0.0155982421895319
+'Pevek urban district','cities',0.0707882480032154
+'Podgornoye','cities',0.0454877166495485
+'Podgorny','cities',-0.0287722574109884
+'Podolsk','cities',0.037342467108489
+'Podtyosovo','cities',0.142220516894486
+'Pogar','cities',-0.0989924053709769
+'Pogranichniy','cities',-0.0356345537308287
+'Pokhvistnevo','cities',-0.114048883037254
+'Pokrovsk','cities',-0.0794092849665153
+'Polessk','cities',-0.025101401200333
+'Poletayevo','cities',-0.110219916333315
+'Poltavka','cities',0.0025382166984081
+'Polysayevo','cities',-0.0842961998796181
+'Pospelikha','cities',0.0109501067588848
+'Potseluyev','cities',-0.070620162294955
+'Pristen','cities',-0.0787939986779948
+'Progress','cities',0.178909761219456
+'Prokhladny','cities',-0.0816133313264786
+'Prokopyevsk','cities',-0.0830112057378746
+'Promyshlennaya','cities',-0.145001231474754
+'Protvino','cities',-0.0598964735242778
+'Pskov','cities',-0.0191877271131634
+'Pugachyov','cities',-0.0836764504805531
+'Pushkin','cities',-0.0234043663562122
+'Pushkino','cities',0.00735439537160218
+'Pyatigorsk','cities',-0.030260209518604
+'Pyt'-Yakh','cities',-0.0227683060426892
+'Ramenskoye','cities',-0.035389994464532
+'Ramensky District','cities',0.0019260086153146
+'Ramonsky District','cities',-0.108258133464458
+'Rasskazovo','cities',0.0371879455181315
+'Raychikhinsk','cities',0.11569681301905
+'Razdol’nyy','cities',-0.030989766576899
+'Razumnoye','cities',-0.0595873705880923
+'Reutov','cities',0.0324160181248544
+'Revda','cities',-0.144432300046998
+'Rostov','cities',-0.100893187957911
+'Rostov-on-Don','cities',0.0368119308151897
+'Rostovka','cities',-0.0764806780919058
+'Rtishchevo','cities',-0.030258253951947
+'Rubtsovsk','cities',-0.0572304484084472
+'Ruzaevka','cities',-0.10081078181027
+'Ryazan','cities',-0.0299805833909746
+'Ryazhsk','cities',-0.088493991584366
+'Rybinsk','cities',-0.0346493518685972
+'Rybnoe','cities',-0.0558315017579664
+'Rylsk','cities',-0.103864326079591
+'Rzhev','cities',-0.0608726268990943
+'Sadovyy','cities',-0.0975137946221651
+'Safonovo','cities',-0.0269444787095712
+'Saint Petersburg city','cities',0.0254122703826305
+'Sakmara','cities',-0.105855387100366
+'Salavat','cities',-0.0875248864748859
+'Samagaltay','cities',-0.0108044351607424
+'Samara','cities',0.0178689493012597
+'Sarai','cities',-0.0570593024806221
+'Saransk','cities',-0.0253598593077818
+'Sarapul','cities',-0.0111767877247567
+'Saratov','cities',-0.00808647199644728
+'Savasleyka','cities',-0.0463158471870601
+'Sayanogorsk','cities',0.208117061301471
+'Sayansk','cities',-0.111239326542914
+'Schokino','cities',-0.0253404894548032
+'Selenginsk','cities',0.0547418901571502
+'Selyatino','cities',0.0276581235892687
+'Semiluki','cities',-0.0925192033037777
+'Semyonov','cities',-0.065061049031168
+'Sengiley','cities',-0.0400113437595599
+'Serdobsk','cities',-0.0972342595652432
+'Sergiyev Posad','cities',-0.0458719547806391
+'Sergiyevo-Posadsky District','cities',0.0248854529068815
+'Serpukhov','cities',-0.0119925310994046
+'Sestroretsk','cities',0.0182836249434877
+'Severobaikalsk','cities',-0.0554302057363293
+'Severodvinsk','cities',-0.0225783678691467
+'Seversk','cities',0.00360447385603847
+'Shadrinsk','cities',-0.0758535821816747
+'Shagonar','cities',0.0080374651841057
+'Shakhty','cities',-0.00436647084294562
+'Sharya','cities',0.0167054835407584
+'Sharypovo','cities',-0.0687258087989803
+'Shatura','cities',0.0145897426683293
+'Shcherbinka','cities',-0.0006481099463284
+'Shchyolkovo','cities',0.0268518627095709
+'Shebekino','cities',-0.0900390711876309
+'Shelekhov','cities',-0.0304534867031813
+'Sherbakul','cities',-0.0736785817610183
+'Shimanovsk','cities',-0.0476972758657399
+'Shumikha','cities',-0.0719794942293013
+'Shushenskoye','cities',0.135587331518331
+'Shuya','cities',-0.038992889945816
+'Sigayevo','cities',-0.0137902912424424
+'Skovorodino','cities',-0.0062395513355204
+'Slantsy','cities',-0.0526445266612247
+'Slavyanka','cities',0.19746835906025
+'Slavyansk-na-Kubani','cities',0.0162477748894466
+'Slobodskoy','cities',0.0622809975634217
+'Slyudyanka','cities',-0.0879242644212636
+'Smolensk','cities',0.0201809226291073
+'Smolyaninovo','cities',0.0749300102688128
+'Sochi','cities',-0.00922373833973851
+'Solikamsk','cities',-0.0344252304803319
+'Solnechnogorsk','cities',-0.0846001236270941
+'Solnechnogorsky District','cities',-0.0106502791554291
+'Sosnovoborsk','cities',-0.010525211845336
+'Spassk-Dal'nij','cities',0.0337328676256835
+'Sredneuralsk','cities',-0.0454456474959239
+'Srednyaya Akhtuba','cities',-0.1161242462705
+'Sretensk','cities',-0.0065942160961064
+'Staraya Kupavna','cities',0.119435771071739
+'Staraya Russa','cities',-0.0445698542390709
+'Staronizhestebliyevskaya','cities',0.0891053493398533
+'Stary Oskol','cities',-0.0633123325144338
+'Stavropol','cities',0.00689932235767653
+'Stayevo','cities',-0.0247128852510862
+'Sterlitamak','cities',-0.0367106116313009
+'Strezhevoi','cities',-0.0019956571937683
+'Stroitel','cities',-0.0924709228178714
+'Sudzha','cities',-0.123113172429592
+'Sukhobuzimskoye','cities',-0.0320157777442423
+'Sukpak','cities',0.0304689035144139
+'Surgut','cities',-0.0324329547925045
+'Sut-Khol','cities',0.0131890732437399
+'Svetlogorsk','cities',-0.0463721495065078
+'Svetlograd','cities',0.0186609956205407
+'Svetlolobovo','cities',-0.0800818402124782
+'Svobodny','cities',-0.00705118661629522
+'Syktyvkar','cities',-0.0895367832679711
+'Syzran','cities',-0.0185565569676414
+'Taganrog','cities',-0.0850359662613239
+'Taganrog City District','cities',-0.0719015786169798
+'Talmenka','cities',-0.0720460235641023
+'Talovaya','cities',-0.0821928530964457
+'Tambov','cities',-0.0160333898008047
+'Tarbagatay','cities',0.0624621691008117
+'Tarusa','cities',-0.133333245098047
+'Tashtyp','cities',0.144956745574235
+'Tazovsky Rayon','cities',-0.0597373223351727
+'Tbilisskaya','cities',-0.0936300192887711
+'Ternovka','cities',-0.0928868489659119
+'Tikhoretsk','cities',-0.0702857333892441
+'Tikhvin','cities',-0.0561122714206491
+'Timashevsk','cities',-0.0564065812577554
+'Tkhagapsh','cities',-0.00146800601825194
+'Tobolsk','cities',0.0716007045522348
+'Togliatti','cities',-0.0138140078423027
+'Tolyatti','cities',-0.0345463501977615
+'Tommot','cities',-0.0137219756565221
+'Tomsk','cities',0.0243618830184031
+'Topki','cities',-0.00990961410536959
+'Torzhok','cities',-0.0920401667857838
+'Tosno','cities',0.007390259262769
+'Tovarkovo','cities',-0.0830265722077059
+'Troitsk','cities',-0.0167462461801174
+'Troitskoye','cities',0.0346370868800863
+'Trubchevsk','cities',-0.114897273437024
+'Tsiolkovsky','cities',0.0708641343289312
+'Tuapse','cities',0.0492148512031251
+'Tuchkovo','cities',-0.0755467449487956
+'Tujmazy','cities',-0.0435694951232874
+'Tula','cities',-0.0230747353026256
+'Tuloma','cities',-0.0898951648876469
+'Tulun','cities',-0.0695758149926039
+'Turan','cities',0.0074889981901422
+'Turuntaevo','cities',0.107563324650649
+'Tutaev','cities',0.0421528500856673
+'Tver','cities',-0.0328886548438721
+'Tyazhinskiy','cities',-0.111138497458599
+'Tynda','cities',-0.0188071393920467
+'Tyumen','cities',-0.0106975696867707
+'Ufa','cities',-0.0185330930656315
+'Uglich','cities',-0.047204990562008
+'Ukhta Urban Okrug','cities',-0.0539247406161974
+'Ulan-Ude','cities',0.010256656638717
+'Ulyanovsk','cities',-0.0456674185861582
+'Umba','cities',-0.111583613038224
+'Unecha','cities',-0.0788373204696419
+'Usman','cities',-0.0370968559828627
+'Usolye-Sibirskoye','cities',0.0258603322083554
+'Ussurijsk','cities',0.0044052364400493
+'Ust-Abakan','cities',0.116019008395653
+'Ust-Bakchar','cities',0.0958744315639007
+'Ust-Donetski','cities',-0.118621936187653
+'Ust-Ilimsk','cities',0.00444304027875169
+'Ust-Labinsk','cities',-0.0825182601111039
+'Utash','cities',-0.143711876538268
+'Uvarovo','cities',-0.0518383061259805
+'Uyar','cities',0.0238491445800634
+'Uyskoye','cities',-0.127309127685229
+'Uzhur','cities',-0.100636790234231
+'Uzlovaya','cities',-0.0318312574573516
+'Valday','cities',0.0382817374471032
+'Valuyki','cities',-0.0627590998209366
+'Vanino','cities',0.0265735792740046
+'Vaninsky Rayon','cities',0.0503885447714107
+'Vel'sk','cities',-0.069485196898084
+'Velikiy Ustyug','cities',-0.0620400053633821
+'Velikiye Luki','cities',-0.0218790918081092
+'Veliky Novgorod','cities',0.0363598906754555
+'Venyov','cities',-0.0388536739513938
+'Verkhnyaya Pyshma','cities',-0.0587901398703163
+'Veshkayma','cities',-0.139309297223118
+'Veydelevka','cities',-0.0766726095421661
+'Vichuga','cities',-0.104330688055026
+'Vidnoye','cities',0.011983354079184
+'Vikhorevka','cities',-0.110957495595753
+'Vilyuchinsk','cities',0.0265668613070193
+'Vladimir','cities',-0.0168121597210109
+'Vladivostok','cities',0.0386471011842299
+'Vnukovo','cities',-0.0215617742437499
+'Vnukovo District','cities',0.156928625197937
+'Volgodonsk','cities',0.04570271551342
+'Volgograd','cities',-0.0243910764260682
+'Volkhov','cities',-0.0947371842037503
+'Volno-Nadejdinskoe','cities',0.19040055640208
+'Volodarsky','cities',-0.0587039759494599
+'Vologda','cities',-0.0204239202766436
+'Volokolamsk','cities',-0.0476559313866381
+'Volsk','cities',0.137268352122785
+'Volzhsk','cities',-0.0871246206861029
+'Volzhsky','cities',-0.0334482859150276
+'Voronezh','cities',-0.01121471002615
+'Voskresensk','cities',-0.0108180500738778
+'Votkinsk','cities',-0.039811560578943
+'Vsevolozhsk','cities',-0.055142810229962
+'Vyazemskiy','cities',0.0082312277022249
+'Vyazma','cities',-0.0483064954610746
+'Vyazniki','cities',0.0783232487279379
+'Vyborg','cities',-0.0516839721972618
+'Vyshny Volochyok','cities',-0.0848792338682799
+'Vysokogornyy','cities',-0.0890446726073086
+'Vysokovsk','cities',0.0050994476548681
+'Yadrin','cities',-0.0631023773493667
+'Yakutsk','cities',0.0422739293506252
+'Yaransk','cities',0.0185238750810188
+'Yaroslavl','cities',-0.0110035393038138
+'Yartsevo','cities',-0.104632077661577
+'Yashkul','cities',-0.0313454874829662
+'Yasnogorsk','cities',-0.0553469460373698
+'Yefremov','cities',-0.0097178468716958
+'Yegoryevsk','cities',0.137124795634558
+'Yekaterinburg','cities',-0.0256446612949261
+'Yelabuga','cities',-0.0842063829508089
+'Yelets','cities',-0.00980472839403336
+'Yelizovo','cities',0.0432743687219765
+'Yemelyanovo','cities',0.0571211743711162
+'Yemelyanovsky Rayon','cities',-0.113846885047998
+'Yeysk','cities',-0.0380044030102233
+'Yoshkar-Ola','cities',-0.0824214207301882
+'Yoshkar-Ola City District','cities',-0.0643323272378921
+'Yuzhno-Sakhalinsk','cities',0.0452078926557751
+'Yuzhny','cities',-0.0258950781468143
+'Zagoryanskiy','cities',-0.0934002198832273
+'Zaigrayevo','cities',0.163772412460408
+'Zakamensk','cities',0.104887936550611
+'Zalari','cities',0.0029836898359931
+'Zaozyorny','cities',0.0150971794925009
+'Zaplavnoe','cities',-0.138690130283817
+'Zapolyarnyy','cities',0.139830529204095
+'Zarechny','cities',-0.0569026333446655
+'Zarubino','cities',0.169728774395457
+'Zavitinsk','cities',-0.111032537466592
+'Zelenodol'sk','cities',-0.0641650913387006
+'Zelenogorsk','cities',-0.0670597609113362
+'Zelenograd','cities',-0.00178988084899899
+'Zelenogradsk','cities',-0.0176258047073394
+'Zelenokumsk','cities',-0.0974517967508184
+'Zeya','cities',0.193909121366862
+'Zheleznogorsk','cities',0.0031631654571578
+'Zheleznovodsk','cities',-0.0996992148182645
+'Zhigulyovsk','cities',-0.0718295556870303
+'Zhukov','cities',-0.0476678404207127
+'Zhukovsky','cities',-0.00343472729111482
+'Zhukovsky District','cities',-0.075648559655283
+'Zima','cities',-0.0936876279293587
+'Zmeinogorsk','cities',-0.0100875908848438
+'Zyryanskoye','cities',0.148938147572443
+'sovkhoza imeni Lenina','cities',0.0164481060780835
+'Агрогородок','cities',0.0426092377392698
+'Алачково','cities',-0.0619537506928196
+'Аликово','cities',-0.0641909625650431
+'Артёмовский городской округ','cities',0.0991043579013037
+'Афонино','cities',0.0365592761291406
+'Бабстово','cities',0.147928203273848
+'Берёзовка','cities',0.0437106148469987
+'Берёзовский национальный (кочевой) наслег','cities',-0.0833564058734236
+'Борки','cities',-0.0783144587614101
+'Боровский','cities',0.0361261637039943
+'Вад','cities',-0.0842503208139406
+'Веледниково','cities',0.141469353333161
+'Верх-Бийск','cities',0.0179513499647474
+'Ветлужский','cities',-0.028643980807322
+'Вольновское сельское поселение','cities',0.0478294700493986
+'Восток','cities',-0.0969124407826072
+'Высокая Гора','cities',-0.0308774824841193
+'Глинищево','cities',-0.0509745283809463
+'Горки-10','cities',-0.0529336317506871
+'Городище','cities',-0.0614236880427392
+'Домна','cities',0.0125334305198739
+'Дубки','cities',0.0027105261128641
+'Дядьково','cities',0.0218048779621596
+'Екатеринославка','cities',-0.030518973563416
+'Жуковка','cities',-0.0318362244935106
+'Заневское городское поселение','cities',0.138010588013804
+'Заринск','cities',-0.0906781075592365
+'Зарубино','cities',0.171985566366978
+'Засечное','cities',-0.00672685913582755
+'Зелёновское сельское поселение','cities',-0.0389478112681768
+'Исетское','cities',-0.0032773305465163
+'Кадуй','cities',-0.0827571914804722
+'Камарчага','cities',-0.113036585086208
+'Кормиловка','cities',-0.0812489076690897
+'Красный Бор','cities',0.0242024445566779
+'Криводановка','cities',-0.0276573657875183
+'Кугеси','cities',-0.0778711918613832
+'Кызылский кожуун','cities',-0.126762369846515
+'Кяхта','cities',0.168337788179924
+'Лапино','cities',-0.0463216500959503
+'Лесогорский','cities',0.0165037136306651
+'Луч','cities',-0.0788427382283756
+'Ляховское сельское поселение','cities',-0.0016327241938674
+'Малая Уваровка','cities',-0.0887292850830265
+'Маслова','cities',-0.116670272901523
+'Меленки','cities',0.0950231038029725
+'Мирское сельское поселение','cities',-0.0498819385356568
+'Моргауши','cities',-0.0352397326283274
+'Навля','cities',-0.0999911519589801
+'Нижняя Таловка','cities',0.106309384754023
+'Низинское сельское поселение','cities',-0.037703528890912
+'Новобурейский','cities',-0.12362274798036
+'Новые Лапсары','cities',-0.0651262285560935
+'Одинцовский городской округ','cities',0.0251180528425636
+'Павло-Куракино','cities',-0.115332167035537
+'Павловская Слобода','cities',-0.0707498714673147
+'Переволоцкий','cities',-0.0456556535012901
+'Петропавловск','cities',-0.0132124454302834
+'Плеханово','cities',-0.109297806851623
+'Подгорное','cities',0.166141389990555
+'Почеп','cities',-0.072754581511643
+'Починок','cities',-0.0129427207317312
+'Придорожный','cities',-0.0529731798141855
+'Расковское сельское поселение','cities',0.0400740144785308
+'Рассказовка','cities',0.154730650962953
+'Ртищево','cities',-0.0924276959915745
+'Рыбхоз','cities',-0.0494611022595088
+'Рязань','cities',-0.0450546732521778
+'Сазоново','cities',-0.0615932112730112
+'Сатинка','cities',-0.0865357892857769
+'Северный','cities',-0.0757710006343657
+'Сергиевский','cities',0.117554111561686
+'Серышево','cities',0.0154726271427456
+'Советская','cities',0.0407827216919002
+'Солонцы','cities',0.164703378653815
+'Среднеивкино','cities',-0.0280399662847089
+'Старая Шемурша','cities',-0.0970429145813477
+'Троицкий','cities',-0.0584250111127433
+'Тябердино-Челны','cities',-0.0680299299207646
+'Февральск','cities',-0.0454640674578385
+'Центральный','cities',0.0020338951848825
+'Чердаклы','cities',-0.0380959963131623
+'Чернышевка','cities',-0.0462578536334273
+'Чувашское Дрожжаное','cities',-0.102815008606341
+'Шалинское','cities',-0.108200977937469
+'Щеглово (торфопредприятие)','cities',0.18896773532585
+'Юрицево','cities',-0.106514845580811
+'Юхнов','cities',-0.050898436991619
+'Ялуторовск','cities',-0.0737173934661331
+'городское поселение Елабуга','cities',-0.0539562923979585
+'городской округ Барнаул','cities',-0.0448116995733781
+'городской округ Бор','cities',-0.102353455755557
+'городской округ Муром','cities',-0.0702605238536911
+'городской округ Норильск','cities',0.208666362165496
+'поселение Михайлово-Ярцевское','cities',-0.0582641855319311
+"'посёлок Подсобного Хозяйства ""Воскресенское""','cities',0.0242816494800732"
+'Central Federal District','regions',0.00549054486743535
+'Far Eastern Federal District','regions',0.031982817173743
+'North Caucasian Federal District','regions',-0.0226198296287054
+'Northwestern Federal District','regions',-0.000395937477715741
+'Siberian Federal District','regions',0.00293077288838715
+'Southern Federal District','regions',0.00265301753671535
+'Ural Federal District','regions',-0.0169396264571724
+'Volga Federal District','regions',-0.0255876308838268
+'Altai Krai','states',-0.0274195348969266
+'Altai Republic','states',0.0179513499647474
+'Amur Oblast','states',0.00796695286997485
+'Arkhangelsk Oblast','states',-0.0283055456009716
+'Astrakhan Oblast','states',0.00250961813381763
+'Bashkortostan','states',-0.0320793418391547
+'Belgorod Oblast','states',-0.0506515435800121
+'Bryansk Oblast','states',-0.0224156236494793
+'Buryatia','states',0.0134973284378832
+'Chelyabinsk Oblast','states',-0.0104922976514282
+'Chukotka Autonomous Okrug','states',0.0707882480032154
+'Chuvashia','states',-0.0659221818685805
+'Dagestan','states',-0.0653474652794268
+'Irkutsk Oblast','states',-0.0296388971718393
+'Ivanovo Oblast','states',0.0127041703614861
+'Jewish Autonomous Oblast','states',0.0326540453406733
+'Kabardino-Balkaria','states',-0.0816133313264786
+'Kaliningrad oblast','states',-0.0220820116858211
+'Kaluga Oblast','states',-0.00498301970882293
+'Kamchatka Krai','states',0.03448612890191
+'Kemerovo Oblast–Kuzbass','states',-0.0319106748757333
+'Khabarovsk Krai','states',0.0392350885848686
+'Khanty-Mansiysk Autonomous Okrug – Ugra','states',-0.0125711977695776
+'Kirov Oblast','states',-0.0394370689883026
+'Komi Republic','states',-0.0806337726050276
+'Kostroma Oblast','states',-0.017664884194789
+'Krasnodar Krai','states',0.00838417332268498
+'Krasnoyarsk Krai','states',0.0357256507762713
+'Kurgan Oblast','states',-0.00518060210556513
+'Kursk Oblast','states',-0.0309279989780341
+'Leningrad oblast','states',-0.0154337410543972
+'Lipetsk Oblast','states',-0.0168766483077625
+'Magadan Oblast','states',-0.0147887959001964
+'Mari El Republic','states',-0.0671957243405455
+'Moscow, state','states',0.0397524367989099
+'Moscow Oblast','states',0.0125146120693576
+'Murmansk Oblast','states',-0.0099215741509319
+'Nizhny Novgorod Oblast','states',0.0150918734654801
+'Novgorod Oblast','states',0.0378787224010916
+'Novosibirsk Oblast','states',-0.0222877883537441
+'Omsk Oblast','states',-0.0123578041947662
+'Orenburg Oblast','states',-0.0497109870252447
+'Oryol Oblast','states',0.0072261995216285
+'Penza Oblast','states',-0.0116321899599159
+'Perm Krai','states',-0.00823276574099486
+'Primorsky Krai','states',0.045617790512944
+'Pskov Oblast','states',-0.0193799674485167
+'Republic of Adygea','states',0.0338777535892105
+'Republic of Crimea','states',-0.0389478112681768
+'Republic of Kalmykia','states',0.0439513235282267
+'Republic of Karelia','states',-0.00934318377324391
+'Republic of Khakassia','states',0.0752523108334353
+'Republic of Mordovia','states',-0.0311637764233578
+'Rostov Oblast','states',0.00597884482394755
+'Ryazan Oblast','states',-0.0344276721128103
+'Saint Petersburg, state','states',0.0221960991027324
+'Sakha Republic','states',0.0429150434068243
+'Sakhalin Oblast','states',0.0385555000211946
+'Samara Oblast','states',-0.00448201709808317
+'Saratov Oblast','states',-0.0127274428271355
+'Smolensk Oblast','states',-0.0178087282594325
+'Stavropol Krai','states',-0.0161091577877449
+'Sverdlovsk Oblast','states',-0.0318453380875797
+'Tambov Oblast','states',-0.00834428843307403
+'Tatarstan','states',-0.0573227586449862
+'Tomsk Oblast','states',0.0266273458205664
+'Tula Oblast','states',-0.0311197467437782
+'Tuva Republic','states',0.099002036915937
+'Tver Oblast','states',-0.04475182922593
+'Tyumen Oblast','states',-0.00388280962399595
+'Udmurtia','states',-0.0296167961434338
+'Ulyanovsk Oblast','states',-0.0457446853400987
+'Vladimir Oblast','states',-0.00627823323493639
+'Volgograd Oblast','states',-0.0342086723293546
+'Vologda Oblast','states',-0.0319567774578355
+'Voronezh Oblast','states',-0.0191089084276088
+'Yamalo-Nenets Autonomous Okrug','states',-0.0549961891643019
+'Yaroslavl Oblast','states',-0.0166915401774305
+'Zabaykalsky Krai','states',0.012269663008362

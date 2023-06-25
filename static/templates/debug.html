@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="static/styles.css">
+    <style>
+        /* Добавляем разграничение между строками и столбцами в таблице */
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        table td,
+        table th {
+            padding: 8px;
+            border-bottom: 1px solid #ddd;
+            text-align: left;
+        }
+
+        /* Устанавливаем цвет фона в зависимости от уровня */
+        .info-level {
+            background-color: #d4edda; /* Зеленый */
+        }
+
+        .warn-level {
+            background-color: #f8d7da; /* Красный */
+        }
+
+        .error-level {
+            background-color: #f5c6cb; /* Красный */
+        }
+    </style>
+</head>
+<body>
+<header>
+    <nav>
+        <ul class="menu">
+            <li><a href="/">Главная</a></li>
+            <li><a href="http://51.250.21.70:3000/d/f5740753-5de6-47cd-8b5e-1fe5f3d9c9c2/metriki-prilozhenija?orgId=1">Метрики</a>
+            </li>
+            <li><a href="/debug">Дебаг</a></li>
+        </ul>
+    </nav>
+</header>
+<main>
+    <div class="debug-form">
+        <h2>Отладка</h2>
+        <form id="debug-form">
+            <label for="req-id">Req ID:</label>
+            <input type="text" id="req-id" name="req-id" required>
+            <button type="submit" id="trace-button">Рассчитать</button>
+        </form>
+        <table id="trace-result"></table>
+    </div>
+</main>
+<script>
+    function createTableHeader(table, headers) {
+        const thead = document.createElement('thead');
+        const tr = document.createElement('tr');
+
+        for (let header of headers) {
+            const th = document.createElement('th');
+            th.textContent = header;
+            tr.appendChild(th);
+        }
+
+        thead.appendChild(tr);
+        table.appendChild(thead);
+    }
+
+    function createTableRow(table, data) {
+        const tr = document.createElement('tr');
+
+        for (let value of data) {
+            const td = document.createElement('td');
+            td.textContent = value;
+
+            if (data[1] === 'INFO') {
+                td.classList.add('info-level');
+            } else if (data[1] === 'WARN' || data[1] === 'ERROR') {
+                td.classList.add('warn-level');
+            }
+
+            tr.appendChild(td);
+        }
+
+        table.appendChild(tr);
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const reqId = urlParams.get('req-id');
+
+        if (reqId) {
+            const debugForm = document.getElementById('debug-form');
+            const reqIdInput = document.getElementById('req-id');
+            const traceResultTable = document.getElementById('trace-result');
+
+            reqIdInput.value = reqId;
+
+            const url = `http://51.250.21.70:8000/api-debug?req_id=${reqId}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    traceResultTable.innerHTML = '';
+                    if (result.length === 0) {
+                        traceResultTable.innerHTML = '<tr><td>No data available</td></tr>';
+                    } else {
+                        createTableHeader(traceResultTable, ['Timestamp', 'Level', 'Request ID', 'Message']);
+                        for (let entry of result) {
+                            createTableRow(traceResultTable, entry);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        }
+
+        const debugForm = document.getElementById('debug-form');
+        const reqIdInput = document.getElementById('req-id');
+        const traceResultTable = document.getElementById('trace-result');
+
+        debugForm.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const reqId = reqIdInput.value;
+
+            const url = `http://51.250.21.70:8000/api-debug?req_id=${reqId}`;
+
+            fetch(url)
+                .then(response => response.json())
+                .then(result => {
+                    traceResultTable.innerHTML = '';
+                    if (result.length === 0) {
+                        traceResultTable.innerHTML = '<tr><td>No data available</td></tr>';
+                    } else {
+                        createTableHeader(traceResultTable, ['Timestamp', 'Level', 'Request ID', 'Message']);
+                        for (let entry of result) {
+                            createTableRow(traceResultTable, entry);
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка:', error);
+                });
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+from dataclasses import dataclass
+
+@dataclass
+class BankInputForML:
+    atm_group: float = 0.0
+    distance_to_fast_food: float = 0.0
+    distance_to_clothes: float = 0.0
+    distance_to_vending_parking: float = 0.0
+    distance_to_cafe: float = 0.0
+    distance_to_pharmacy: float = 0.0
+    distance_to_atm: float = 0.0
+    distance_to_cinema: float = 0.0
+    distance_to_shoe_shop: float = 0.0
+    distance_to_bank: float = 0.0
+    distance_to_supermarket: float = 0.0
+    distance_to_restaurant: float = 0.0
+    distance_to_mobile_phone_shop: float = 0.0
+    distance_to_convenience: float = 0.0
+    distance_to_vending_any: float = 0.0
+    distance_to_bank_sberbank: float = 0.0
+    distance_to_bank_vtb: float = 0.0
+    distance_to_bank_alfa_bank: float = 0.0
+    distance_to_bank_rosbank: float = 0.0
+    distance_to_atm_sberbank: float = 0.0
+    distance_to_atm_vtb: float = 0.0
+    distance_to_atm_alfa_bank: float = 0.0
+    distance_to_atm_rosbank: float = 0.0
+    distance_to_retail: float = 0.0
+    distance_to_residential: float = 0.0
+    distance_to_office: float = 0.0
+    distance_to_commercial: float = 0.0
+    distance_to_detached: float = 0.0
+    distance_to_train_station: float = 0.0
+    distance_to_apartments: float = 0.0
+    distance_to_house: float = 0.0
+    distance_to_railway_halt: float = 0.0
+    distance_to_tram_stop: float = 0.0
+    distance_to_bus_stop: float = 0.0
+    distance_to_railway_station: float = 0.0
+    distance_to_airport: float = 0.0
+    distance_to_parking: float = 0.0
+    distance_to_parking_underground: float = 0.0
+    cnt_apart_200m: float = 0.0
+    cnt_banks_200m: float = 0.0
+    cnt_atm_200m: float = 0.0
+    cities: str = ''
+    regions: str = ''
+    states: str = ''
+    population: float = 0.0
+    salary: float = 0.0
+    population_density: float = 0.0
+    happy_index: float = 0.0
+    capital: float = 0.0
+    avgC: float = 0.0
+    avgR: float = 0.0
+    avgS: float = 0.0
+    avgA: float = 0.0
+
