@@ -17,6 +17,7 @@ from features_collector.postgres.avg_dao import AvgDao
 from features_collector.postgres.menu_dao import MenuDao
 from features_collector.postgres.points_dao import PointsDao
 from features_collector.postgres.postgres_connection import get_pg_connection
+from features_collector.postgres.regions_dao import RegionsDao
 from logs.logs_dao import LogsDao
 from ml.predictor import Predictor
 from utils.feature_transformer_for_ml import FeatureTransformerForMl
@@ -34,10 +35,11 @@ points_dao = PointsDao(pg_connection)
 avg_dao = AvgDao(pg_connection)
 logs_dao = LogsDao(pg_connection)
 menu_dao = MenuDao(pg_connection)
+regions_dao = RegionsDao(pg_connection)
 
 with open("ml/models/atm_best.pkl", "rb") as f:
     model = pickle.load(f)
-feature_collector_manager = FeatureCollectorManager(points_dao, avg_dao)
+feature_collector_manager = FeatureCollectorManager(points_dao, avg_dao, regions_dao)
 predictor = Predictor(model)
 
 feature_transformer_for_ml = FeatureTransformerForMl()
@@ -64,6 +66,8 @@ print('okey')
 
 logger.info('initialize logger', extra={'reqId': uuid.uuid4()})
 
+id_to_bank_name = {'32': 'Райффайзен', '496': 'Россельхозбанк', '1022': 'АК Барс', '1942': 'Альфабанк', '3185': 'Газпромбанк', '5478': 'Уралсиб', '8083': 'Росбанк'}
+bank_name_to_id = {value: float(key) for key, value in id_to_bank_name.items()}
 
 def generate_request_id():
     return str(uuid.uuid4())
@@ -97,31 +101,43 @@ def config():
 @app.get("/menu-items")
 def menu_items():
     items_json = menu_dao.get_menu_data()
+
+    bank_names = []
+    for id in items_json['atm_group']:
+        bank_names.append(id_to_bank_name[id])
+    items_json['atm_group'] = bank_names
     return JSONResponse(items_json)
 
 
 @app.get("/menu-items")
 def menu_items():
     items_json = menu_dao.get_menu_data()
+
+    bank_names = []
+    for id in items_json['atm_group']:
+        bank_names.append(id_to_bank_name[id])
+    items_json['atm_group'] = bank_names
     return JSONResponse(items_json)
 
 @app.get("/predict-bank-quality-debug", response_class=HTMLResponse)
-def predict_debug(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+def predict_debug(lat: float, long: float, atm_group: str, city: str, region: str, state: str):
     profiler = Profiler()
     profiler.start()
-    predict(lat, long, atm_group, city, region, state)
+    predict_inner(lat, long, atm_group, city, region, state)
     profiler.stop()
     return profiler.output_html()
 
 @app.get("/predict-bank-quality")
-def predict(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+def predict(lat: float, long: float, atm_group: str, city: str, region: str, state: str):
     content = predict_inner(lat, long, atm_group, city, region, state)
 
     return JSONResponse(content=content['content'], headers=content['headers'])
 
 @REQUEST_TIME.time()
-def predict_inner(lat: float, long: float, atm_group: float, city: str, region: str, state: str):
+def predict_inner(lat: float, long: float, atm_group: str, city: str, region: str, state: str):
     UPDATE_COUNT.inc(1)
+
+    atm_group = bank_name_to_id[atm_group]
     req_id = generate_request_id()
     logger.info('handle request: lat={}, long={}'.format(lat, long), extra={'reqId': req_id})
 
@@ -133,7 +149,7 @@ def predict_inner(lat: float, long: float, atm_group: float, city: str, region: 
     bank_row_dataframe = feature_transformer_for_ml.transform(feature_collector_bank_output, logger, req_id)
     quality = predictor.predict(bank_row_dataframe, logger, req_id)
 
-    content = {"quality": quality[0]}
+    content = {"quality": str(round((quality[0] - (-0.145001)) / (0.218608 - (-0.145001)) * 100, 2)) + '%'}
     headers = {'Request-Id': req_id}
 
     return {'content': content, 'headers': headers}

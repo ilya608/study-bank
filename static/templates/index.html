@@ -9,7 +9,7 @@
         <ul class="menu">
             <li><a href="/">Главная</a></li>
             <li>
-                <a href="http://51.250.21.70:3000/d/dc778099-c596-4423-8b34-0e76e51c22a8/metriki-prilozhenija">Метрики</a>
+                <a href="http://0.0.0.0:3000/d/dc778099-c596-4423-8b34-0e76e51c22a8/metriki-prilozhenija">Метрики</a>
             </li>
             <li><a href="/debug">Дебаг</a></li>
         </ul>
@@ -99,7 +99,7 @@
         }
 
         // Загрузка данных для выпадающих списков из ручки http://0.0.0.0:8000/menu-items
-        fetch('http://51.250.21.70:8000/menu-items')
+        fetch('http://0.0.0.0:8000/menu-items')
             .then(response => response.json())
             .then(data => {
                 fillDropdowns(data);
@@ -121,7 +121,7 @@
             const state = stateSelect.value;
 
             // Формируем URL-адрес с параметрами
-            const url = `http://51.250.21.70:8000/predict-bank-quality?lat=${latitude}&long=${longitude}&atm_group=${atmGroup}&city=${city}&region=${region}&state=${state}`;
+            const url = `http://0.0.0.0:8000/predict-bank-quality?lat=${latitude}&long=${longitude}&atm_group=${atmGroup}&city=${city}&region=${region}&state=${state}`;
 
 
             fetch(url)

@@ -22,31 +22,30 @@ class PointsDao:
         finally:
             cursor.close()
 
-    # методы пока не работают
-    # def get_cnt_apart(self, lat, lon):
-    #     return self.get_cnt(self, lat, lon, 'apart')
-    #
-    # def get_cnt_atm(self, lat, lon):
-    #     return self.get_cnt(self, lat, lon, 'atm')
-    #
-    # def get_cnt_bank(self, lat, lon):
-    #     return self.get_cnt(self, lat, lon, 'bank')
-    #
-    # def get_cnt(self, lat, lon, like_obj):
-    #     cursor = self.connection.cursor()
-    #
-    #     query = f"""SELECT COUNT() AS cnt_atm_200m FROM points
-    #                 WHERE
-    #                 (latitude111111.11 => {lat}111111.11 - 200)
-    #                 AND (latitude111111.11 =< {lat}111111.11 + 200)
-    #                 AND (longitude111111.11COS(latitude) => {lon}111111.11COS({lat}) - 200)
-    #                 AND (longitude111111.11COS(latitude) =< {lon}COS({lat})*111111.11 + 200)
-    #                 AND building_type LIKE '%{like_obj}%' """
-    #
-    #     cursor.execute(query)
-    #     result = cursor.fetchall()
-    #
-    #     self.connection.commit()
-    #     cursor.close()
-    #
-    #     return result[0][0]
+    def get_cnt200m_points(self, latitude, longitude, logger, req_id):
+        cursor = self.connection.cursor()
+
+        # тут есть индекс по (latitude, longitude)
+        query = """
+                SELECT building_type, count(*)
+                FROM points
+                WHERE
+                    latitude between {} and {}
+                    and longitude between {} and {}
+                GROUP BY building_type
+            """.format(latitude - 0.0028, latitude + 0.0028, longitude - 0.0028, longitude + 0.0028)
+        try:
+            cursor.execute(query)
+
+            result = {}
+            for row in cursor:
+                building_type = row[0]
+                count = row[1]
+                result[building_type] = count
+            return result
+        except Exception as e:
+            logger.error('failed cnt200m dao query {}'.format(e), extra={'reqId': req_id})
+
+            self.connection.rollback()
+        finally:
+            cursor.close()

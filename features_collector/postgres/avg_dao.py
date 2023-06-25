@@ -34,8 +34,6 @@ class AvgDao:
             return dd
         except Exception as e:
             logger.error('failed avg dao query {}'.format(e), extra={'reqId': req_id})
-
-            # todo
-            print(3)
+            self.connection.rollback()
         finally:
             cursor.close()
