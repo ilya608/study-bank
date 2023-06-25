@@ -25,13 +25,15 @@ class PointsDao:
     def get_cnt200m_points(self, latitude, longitude, logger, req_id):
         cursor = self.connection.cursor()
 
+        # тут есть индекс по (latitude, longitude)
         query = """
-                SELECT building_type, COUNT(*)
+                SELECT building_type, count(*)
                 FROM points
                 WHERE
-                    (ACOS(SIN(RADIANS(latitude)) * SIN(RADIANS({})) + COS(RADIANS(latitude)) * COS(RADIANS({})) * COS(RADIANS({} - longitude)))) * 6371000 <= 200
-                GROUP BY building_type;
-            """.format(latitude, latitude, longitude)
+                    latitude between {} and {}
+                    and longitude between {} and {}
+                GROUP BY building_type
+            """.format(latitude - 0.0028, latitude + 0.0028, longitude - 0.0028, longitude + 0.0028)
         try:
             cursor.execute(query)
 
