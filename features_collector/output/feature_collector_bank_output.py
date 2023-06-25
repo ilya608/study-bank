@@ -44,9 +44,9 @@ class FeatureCollectorBankOutput:
     distance_to_parking_underground: float = 1000.0
     # конец фичей которые есть
 
-    cnt_apart_200m: float = 0.0 # todo можно достать из базы, надо поизучать building_type
-    cnt_banks_200m: float = 0.0 # todo можно достать из базы, надо поизучать building_type
-    cnt_atm_200m: float = 0.0  # todo можно достать из базы, надо поизучать building_type
+    cnt_apart_200m: float = 0.0
+    cnt_banks_200m: float = 0.0
+    cnt_atm_200m: float = 0.0
     cities: str = ''
     regions: str = ''
     states: str = ''

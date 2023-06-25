@@ -25,9 +25,6 @@ def rename_russian_features(bank):
 
 
 class FeatureTransformerForMl:
-    def __init__(self):
-        self.todo = 123
-
     @REQUEST_TIME.time()
     def transform(self, bank: FeatureCollectorBankOutput, logger, req_id) -> pd.DataFrame:
         logger.info('start feature transform', extra={'reqId': req_id})

@@ -4,14 +4,16 @@ from features_collector.input.feature_collector_bank_input import FeatureCollect
 from features_collector.output.feature_collector_bank_output import FeatureCollectorBankOutput
 from features_collector.postgres.avg_dao import AvgDao
 from features_collector.postgres.points_dao import PointsDao
+from features_collector.postgres.regions_dao import RegionsDao
 
 REQUEST_TIME = Summary('collect_features_response_time', 'Time spent processing request')
 
 
 class FeatureCollectorManager:
-    def __init__(self, points_dao: PointsDao, avg_dao: AvgDao):
+    def __init__(self, points_dao: PointsDao, avg_dao: AvgDao, regions_dao: RegionsDao):
         self.points_dao = points_dao
         self.avg_dao = avg_dao
+        self.regions_dao = regions_dao
 
     @REQUEST_TIME.time()
     def collect_features(self,
@@ -31,6 +33,8 @@ class FeatureCollectorManager:
 
         self.calculate_distance_features(nearest_by_type, feature_collector_bank_output, logger, req_id)
         self.calculate_avg_features(feature_collector_bank_input, feature_collector_bank_output, logger, req_id)
+        self.calculate_cnt200m_features(feature_collector_bank_input, feature_collector_bank_output, logger, req_id)
+        self.calculate_regions_features(feature_collector_bank_input, feature_collector_bank_output, logger, req_id)
         self.calculate_query_features(feature_collector_bank_input, feature_collector_bank_output)
 
         return feature_collector_bank_output
@@ -38,7 +42,9 @@ class FeatureCollectorManager:
     def calculate_query_features(self,
                                  feature_collector_bank_input: FeatureCollectorBankInput,
                                  feature_collector_bank_output: FeatureCollectorBankOutput):
-
+        feature_collector_bank_output.states = feature_collector_bank_input.state
+        feature_collector_bank_output.cities = feature_collector_bank_input.city
+        feature_collector_bank_output.regions = feature_collector_bank_input.region
         feature_collector_bank_output.atm_group = feature_collector_bank_input.atm_group
 
     def calculate_distance_features(self, nearest_by_type, feature_collector_bank_output: FeatureCollectorBankOutput,
@@ -52,6 +58,21 @@ class FeatureCollectorManager:
                 setattr(feature_collector_bank_output, feature_name, distance)
             else:
                 logger.error("failed parse points", extra={'reqId': req_id})
+
+    def calculate_cnt200m_features(self,
+                                   feature_collector_bank_input: FeatureCollectorBankInput,
+                                   feature_collector_bank_output: FeatureCollectorBankOutput,
+                                   logger,
+                                   req_id):
+        data = self.points_dao.get_cnt200m_points(feature_collector_bank_input.latitude,
+                                                  feature_collector_bank_input.longitude,
+                                                  logger,
+                                                  req_id)
+        feature_collector_bank_output.cnt_banks_200m = data.get('bank', 0)
+        feature_collector_bank_output.cnt_atm_200m = sum(data[i] for i in data.keys() if len(i) >= 4 and i[-4:] == 'bank' or i[-3:] == 'atm')
+        feature_collector_bank_output.cnt_apart_200m = data.get('apart', 0)
+
+        return data
 
     def calculate_avg_features(self,
                                feature_collector_bank_input: FeatureCollectorBankInput,
@@ -70,3 +91,18 @@ class FeatureCollectorManager:
         feature_collector_bank_output.avgC = avg_features['cities']
         feature_collector_bank_output.avgR = avg_features['regions']
         feature_collector_bank_output.avgS = avg_features['states']
+
+    def calculate_regions_features(self,
+                                   feature_collector_bank_input: FeatureCollectorBankInput,
+                                   feature_collector_bank_output: FeatureCollectorBankOutput,
+                                   logger,
+                                   req_id):
+        logger.info('calculate regions_features', extra={'reqId': req_id})
+
+        regions_features = self.regions_dao.get_regions_data(feature_collector_bank_input.region,
+                                                             logger,
+                                                             req_id)
+        feature_collector_bank_output.population = regions_features['population']
+        feature_collector_bank_output.salary = regions_features['salary']
+        feature_collector_bank_output.population_density = regions_features['population_density']
+        feature_collector_bank_output.happy_index = regions_features['happy_index']
