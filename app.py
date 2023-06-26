@@ -31,7 +31,7 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 Instrumentator().instrument(app).expose(app)
 
-connection_pool = psycopg2.pool.SimpleConnectionPool(
+connection_pool = psycopg2.pool.ThreadedConnectionPool(
     minconn=1,    # Минимальное количество соединений в пуле
     maxconn=10,   # Максимальное количество соединений в пуле
     host='rc1a-mxoodqvw58cvt97d.mdb.yandexcloud.net,rc1b-4ny0b4t0wrstwjaj.mdb.yandexcloud.net',
