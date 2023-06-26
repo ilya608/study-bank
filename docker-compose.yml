@@ -12,14 +12,14 @@ services:
     volumes:
       - app-logs:/app/logs
 
-  push_logs_to_pg:
-    build:
-        context: .
-        dockerfile: logs/Dockerfile
-    command: python3 logs/dump_to_postgres.py
-    restart: always
-    volumes:
-      - app-logs:/app/logs
+#   push_logs_to_pg:
+#     build:
+#         context: .
+#         dockerfile: logs/Dockerfile
+#     command: python3 logs/dump_to_postgres.py
+#     restart: always
+#     volumes:
+#       - app-logs:/app/logs
 
   prometheus:
     image: prom/prometheus

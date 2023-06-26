@@ -1,7 +1,7 @@
 import requests
 from concurrent.futures import ThreadPoolExecutor
 
-url = 'http://51.250.21.70:8000/predict-bank-quality'
+url = 'http://158.160.65.88:8000/predict-bank-quality'
 
 # Параметры запроса
 params = {
