@@ -59,7 +59,6 @@ regions_dao = RegionsDao(pg_connection)
 
 with open("ml/models/atm_best.pkl", "rb") as f:
     model = pickle.load(f)
-feature_collector_manager = FeatureCollectorManager(connection_pool)
 predictor = Predictor(model)
 
 feature_transformer_for_ml = FeatureTransformerForMl()
@@ -160,6 +159,7 @@ def predict_inner(lat: float, long: float, atm_group: str, city: str, region: st
     atm_group = bank_name_to_id[atm_group]
     req_id = generate_request_id()
     logger.info('handle request: lat={}, long={}'.format(lat, long), extra={'reqId': req_id})
+    feature_collector_manager = FeatureCollectorManager(connection_pool)
 
     feature_collector_bank_input = FeatureCollectorBankInput(latitude=lat, longitude=long, atm_group=atm_group,
                                                              city=city, region=region, state=state)
