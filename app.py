@@ -2,6 +2,7 @@ import logging
 import pickle
 import uuid
 
+import psycopg2
 import uvicorn
 from fastapi import FastAPI, Request
 from fastapi.responses import HTMLResponse
@@ -10,13 +11,13 @@ from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
 from prometheus_client import Summary, Counter
 from prometheus_fastapi_instrumentator import Instrumentator
+from psycopg2 import pool
 from pyinstrument import Profiler
+
 from features_collector.feature_collector_manager import FeatureCollectorManager
 from features_collector.input.feature_collector_bank_input import FeatureCollectorBankInput
 from features_collector.postgres.avg_dao import AvgDao
 from features_collector.postgres.menu_dao import MenuDao
-from features_collector.postgres.points_dao import PointsDao
-from features_collector.postgres.postgres_connection import get_pg_connection
 from features_collector.postgres.regions_dao import RegionsDao
 from logs.logs_dao import LogsDao
 from ml.predictor import Predictor
@@ -30,8 +31,27 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 
 Instrumentator().instrument(app).expose(app)
 
-pg_connection = get_pg_connection()
-points_dao = PointsDao(pg_connection)
+connection_pool = psycopg2.pool.SimpleConnectionPool(
+    minconn=1,    # Минимальное количество соединений в пуле
+    maxconn=10,   # Максимальное количество соединений в пуле
+    host='rc1a-mxoodqvw58cvt97d.mdb.yandexcloud.net,rc1b-4ny0b4t0wrstwjaj.mdb.yandexcloud.net',
+    port='6432',
+    database='points',
+    user='hse-ilya',
+    password='12345678'
+)
+# psycopg2.connect("""
+#         host=rc1a-mxoodqvw58cvt97d.mdb.yandexcloud.net,rc1b-4ny0b4t0wrstwjaj.mdb.yandexcloud.net
+#         port=6432
+#         sslmode=require
+#         dbname=points
+#         user=hse-ilya
+#         password=12345678
+#         target_session_attrs=read-write
+#         sslrootcert=.postgresql/root.crt
+#     """)
+
+pg_connection = connection_pool.getconn()
 avg_dao = AvgDao(pg_connection)
 logs_dao = LogsDao(pg_connection)
 menu_dao = MenuDao(pg_connection)
@@ -39,7 +59,7 @@ regions_dao = RegionsDao(pg_connection)
 
 with open("ml/models/atm_best.pkl", "rb") as f:
     model = pickle.load(f)
-feature_collector_manager = FeatureCollectorManager(points_dao, avg_dao, regions_dao)
+feature_collector_manager = FeatureCollectorManager(connection_pool)
 predictor = Predictor(model)
 
 feature_transformer_for_ml = FeatureTransformerForMl()

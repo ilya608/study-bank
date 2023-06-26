@@ -10,10 +10,10 @@ REQUEST_TIME = Summary('collect_features_response_time', 'Time spent processing 
 
 
 class FeatureCollectorManager:
-    def __init__(self, points_dao: PointsDao, avg_dao: AvgDao, regions_dao: RegionsDao):
-        self.points_dao = points_dao
-        self.avg_dao = avg_dao
-        self.regions_dao = regions_dao
+    def __init__(self, connection_pool):
+        self.points_dao = PointsDao(connection_pool.getconn())
+        self.avg_dao = AvgDao(connection_pool.getconn())
+        self.regions_dao = RegionsDao(connection_pool.getconn())
 
     @REQUEST_TIME.time()
     def collect_features(self,

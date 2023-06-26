@@ -1,4 +1,3 @@
-from database_initializer.avg_table.avg_table_initializer import PostgresAvgTableInitializer
 from database_initializer.avg_table.regions_table_initializer import PostgresRegionsTableInitializer
 from features_collector.postgres.postgres_connection import get_pg_connection
 
