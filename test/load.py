@@ -1,23 +1,29 @@
-import datetime
-import threading
-import time
-
 import requests
+from concurrent.futures import ThreadPoolExecutor
 
-url = 'http://51.250.21.70:8000/predict-bank-quality?debug=false&lat=34&long=25&atm_group=1022&city=122-%D0%B9%20%D0%BA%D0%B2%D0%B0%D1%80%D1%82%D0%B0%D0%BB&region=Central%20Federal%20District&state=Altai%20Krai'
+url = 'http://51.250.21.70:8000/predict-bank-quality'
 
+# Параметры запроса
+params = {
+    'lat': '43',
+    'long': '54',
+    'atm_group': 'АК Барс',
+    'city': '122-й квартал',
+    'region': 'Central Federal District',
+    'state': 'Altai Krai'
+}
 
-def f():
+# Функция для отправки запросов
+def send_requests(url, params):
     while True:
-        now = datetime.datetime.now()
-        for i in range(100):
-            r = requests.get(url)
-            if i % 100 == 0:
-                print(i)
-                print(f"Status Code: {r.status_code}, Content: {r.text}")
-        print(datetime.datetime.now() - now)
-        time.sleep(0.2)
+        try:
+            response = requests.get(url, params=params)
+            print(f"Response: {response.text}")
+        except requests.exceptions.RequestException as e:
+            print(f"Request failed: {e}")
 
-
-t1 = threading.Thread(target=f)
-t1.start()
+# Создание пула потоков
+with ThreadPoolExecutor(max_workers=16) as executor:
+    # Запуск функции отправки запросов в каждом потоке
+    for _ in range(16):
+        executor.submit(send_requests, url, params)
