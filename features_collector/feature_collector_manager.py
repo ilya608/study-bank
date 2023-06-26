@@ -11,9 +11,20 @@ REQUEST_TIME = Summary('collect_features_response_time', 'Time spent processing 
 
 class FeatureCollectorManager:
     def __init__(self, connection_pool):
-        self.points_dao = PointsDao(connection_pool.getconn())
-        self.avg_dao = AvgDao(connection_pool.getconn())
-        self.regions_dao = RegionsDao(connection_pool.getconn())
+        self.connection_pool = connection_pool
+
+        self.conn1 = self.connection_pool.getconn()
+        self.conn2 = self.connection_pool.getconn()
+        self.conn3 = self.connection_pool.getconn()
+
+        self.points_dao = PointsDao(self.conn1)
+        self.avg_dao = AvgDao(self.conn2)
+        self.regions_dao = RegionsDao(self.conn3)
+
+    def close(self):
+        self.connection_pool.putconn(self.conn1)
+        self.connection_pool.putconn(self.conn1)
+        self.connection_pool.putconn(self.conn1)
 
     @REQUEST_TIME.time()
     def collect_features(self,
@@ -69,7 +80,8 @@ class FeatureCollectorManager:
                                                   logger,
                                                   req_id)
         feature_collector_bank_output.cnt_banks_200m = data.get('bank', 0)
-        feature_collector_bank_output.cnt_atm_200m = sum(data[i] for i in data.keys() if len(i) >= 4 and i[-4:] == 'bank' or i[-3:] == 'atm')
+        feature_collector_bank_output.cnt_atm_200m = sum(
+            data[i] for i in data.keys() if len(i) >= 4 and i[-4:] == 'bank' or i[-3:] == 'atm')
         feature_collector_bank_output.cnt_apart_200m = data.get('apart', 0)
 
         return data

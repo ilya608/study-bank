@@ -172,6 +172,7 @@ def predict_inner(lat: float, long: float, atm_group: str, city: str, region: st
     content = {"quality": str(round((quality[0] - (-0.145001)) / (0.218608 - (-0.145001)) * 100, 2)) + '%'}
     headers = {'Request-Id': req_id}
 
+    feature_collector_manager.close()
     return {'content': content, 'headers': headers}
     # return JSONResponse(content=content, headers=headers)
 
