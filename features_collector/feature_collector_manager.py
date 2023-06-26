@@ -23,8 +23,8 @@ class FeatureCollectorManager:
 
     def close(self):
         self.connection_pool.putconn(self.conn1)
-        self.connection_pool.putconn(self.conn1)
-        self.connection_pool.putconn(self.conn1)
+        self.connection_pool.putconn(self.conn2)
+        self.connection_pool.putconn(self.conn3)
 
     @REQUEST_TIME.time()
     def collect_features(self,
